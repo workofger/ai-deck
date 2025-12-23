@@ -2,8 +2,21 @@ import Link from 'next/link'
 
 export default function Home() {
   return (
-    <main className="min-h-screen flex items-center justify-center bg-pr-charcoal">
-      <div className="text-center space-y-8">
+    <main className="min-h-screen flex items-center justify-center bg-pr-charcoal relative overflow-hidden">
+      {/* Background effects */}
+      <div className="absolute inset-0 bg-diagonal-lines opacity-30" />
+      <div className="absolute inset-0 bg-gradient-to-br from-pr-amber/5 via-transparent to-pr-amber/5" />
+      
+      <div className="relative z-10 text-center space-y-8 px-4">
+        {/* Logo */}
+        <div className="mx-auto mb-6">
+          <img
+            src="/ia-deck/Logo.png"
+            alt="PartRunner"
+            className="h-16 mx-auto opacity-90"
+          />
+        </div>
+        
         <div className="space-y-4">
           <p className="text-pr-amber text-sm font-medium tracking-widest uppercase">
             PartRunner
@@ -18,7 +31,7 @@ export default function Home() {
         
         <Link 
           href="/deck"
-          className="inline-flex items-center gap-3 bg-pr-amber text-pr-charcoal px-8 py-4 rounded-lg font-semibold text-lg hover:bg-pr-amber-light transition-colors"
+          className="inline-flex items-center gap-3 bg-pr-amber text-pr-charcoal px-8 py-4 rounded-lg font-semibold text-lg hover:bg-pr-amber-light transition-colors shadow-lg hover:shadow-pr-amber/20"
         >
           Enter Deck
           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -30,8 +43,16 @@ export default function Home() {
           <p>Press <kbd className="px-2 py-1 bg-pr-gray rounded text-xs">←</kbd> <kbd className="px-2 py-1 bg-pr-gray rounded text-xs">→</kbd> to navigate</p>
           <p>Press <kbd className="px-2 py-1 bg-pr-gray rounded text-xs">P</kbd> for Presenter Mode</p>
         </div>
+        
+        {/* Icon at bottom */}
+        <div className="pt-8">
+          <img
+            src="/ia-deck/Isotipo.png"
+            alt="PartRunner Icon"
+            className="h-10 mx-auto opacity-40"
+          />
+        </div>
       </div>
     </main>
   )
 }
-

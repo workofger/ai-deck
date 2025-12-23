@@ -241,11 +241,10 @@ export default function ImpactSlide({ data, isActive, counters, demoMode }: Prop
             <div className="bg-gradient-to-br from-pr-amber/20 via-pr-dark to-pr-dark border border-pr-amber/40 rounded-2xl p-5 text-center h-full flex flex-col justify-center">
               {/* Logo icon */}
               <div className="mx-auto mb-4 w-20 h-20 relative">
-                <Image
-                  src="/Isotipo.png"
+                <img
+                  src="/ia-deck/Isotipo.png"
                   alt="PartRunner"
-                  fill
-                  className="object-contain"
+                  className="w-full h-full object-contain"
                 />
               </div>
               

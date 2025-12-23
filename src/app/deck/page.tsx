@@ -192,8 +192,8 @@ function DeckContent() {
 
       {/* Logo + Language toggle - top left */}
       <div className="fixed top-4 left-4 z-50 flex items-center gap-4">
-        <Image
-          src="/Logo.png"
+        <img
+          src="/ia-deck/Logo.png"
           alt="PartRunner"
           width={160}
           height={40}
