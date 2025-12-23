@@ -193,11 +193,11 @@ function DeckContent() {
       {/* Logo + Language toggle - top left */}
       <div className="fixed top-4 left-4 z-50 flex items-center gap-4">
         <Image
-          src={deckSpec.meta.brand.logo}
+          src="/Logo.png"
           alt="PartRunner"
-          width={140}
-          height={35}
-          className="opacity-80 hover:opacity-100 transition-opacity"
+          width={160}
+          height={40}
+          className="opacity-90 hover:opacity-100 transition-opacity"
         />
         <LanguageToggle />
       </div>

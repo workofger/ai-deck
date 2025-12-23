@@ -240,9 +240,9 @@ export default function ImpactSlide({ data, isActive, counters, demoMode }: Prop
           <motion.div variants={itemVariants} className="lg:col-span-1">
             <div className="bg-gradient-to-br from-pr-amber/20 via-pr-dark to-pr-dark border border-pr-amber/40 rounded-2xl p-5 text-center h-full flex flex-col justify-center">
               {/* Logo icon */}
-              <div className="mx-auto mb-4 w-16 h-16 relative">
+              <div className="mx-auto mb-4 w-20 h-20 relative">
                 <Image
-                  src="/logo-icon.svg"
+                  src="/Isotipo.png"
                   alt="PartRunner"
                   fill
                   className="object-contain"
