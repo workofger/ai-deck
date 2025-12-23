@@ -1,5 +1,14 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // Base path for deployment at /ia-deck
+  basePath: '/ia-deck',
+  
+  // Asset prefix for CDN/subdirectory deployment
+  assetPrefix: '/ia-deck',
+  
+  // Output as standalone for easier deployment
+  output: 'standalone',
+  
   images: {
     remotePatterns: [
       {
@@ -9,6 +18,9 @@ const nextConfig = {
       },
     ],
   },
+  
+  // Trailing slash for better compatibility
+  trailingSlash: true,
 };
 
 module.exports = nextConfig;
