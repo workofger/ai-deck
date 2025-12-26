@@ -37,10 +37,20 @@ export default function ProblemSlide({ data, isActive }: Props) {
 
   return (
     <div className="relative w-full h-full flex items-center justify-center overflow-hidden bg-pr-charcoal">
-      {/* Dramatic background */}
-      <div className="absolute inset-0 bg-diagonal-lines opacity-25" />
-      <div className="absolute inset-0 bg-gradient-to-br from-red-900/20 via-transparent to-red-950/10" />
-      <div className="absolute top-0 left-0 w-full h-1/2 bg-gradient-to-b from-red-500/5 to-transparent" />
+      {/* Background image */}
+      <div 
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{ 
+          backgroundImage: 'url(https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=1920&q=80)',
+        }}
+      />
+      {/* Dark overlay */}
+      <div className="absolute inset-0 bg-pr-charcoal/88" />
+      
+      {/* Additional effects */}
+      <div className="absolute inset-0 bg-diagonal-lines opacity-20" />
+      <div className="absolute inset-0 bg-gradient-to-br from-red-900/30 via-transparent to-red-950/20" />
+      <div className="absolute top-0 left-0 w-full h-1/2 bg-gradient-to-b from-red-500/10 to-transparent" />
       
       {/* Floating accent */}
       <motion.div 
