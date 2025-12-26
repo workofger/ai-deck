@@ -93,10 +93,10 @@ const demoConfig: Record<string, {
 // ElevenLabs widget component
 function ElevenLabsWidget({ agentId }: { agentId: string }) {
   useEffect(() => {
-    // Load ElevenLabs script if not already loaded
+    // Load ElevenLabs script if not already loaded (beta version required)
     if (!document.querySelector('script[src*="elevenlabs/convai-widget"]')) {
       const script = document.createElement('script');
-      script.src = 'https://unpkg.com/@elevenlabs/convai-widget-embed';
+      script.src = 'https://unpkg.com/@elevenlabs/convai-widget-embed@beta';
       script.async = true;
       script.type = 'text/javascript';
       document.body.appendChild(script);
