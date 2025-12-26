@@ -44,8 +44,8 @@ export default function ProblemSlide({ data, isActive }: Props) {
           backgroundImage: 'url(https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=1920&q=80)',
         }}
       />
-      {/* Dark overlay */}
-      <div className="absolute inset-0 bg-pr-charcoal/88" />
+      {/* Dark overlay - 94% for better text contrast */}
+      <div className="absolute inset-0 bg-pr-charcoal/[0.94]" />
       
       {/* Additional effects */}
       <div className="absolute inset-0 bg-diagonal-lines opacity-20" />
