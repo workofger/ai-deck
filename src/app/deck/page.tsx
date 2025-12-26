@@ -2,142 +2,87 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import Image from 'next/image';
 import { getDeckSpec } from '@/lib/data';
 import { LanguageProvider, LanguageToggle, useLanguage } from '@/lib/language-context';
 import type { 
   DeckSpec, 
   ProblemSlideData,
-  SolutionSlideData,
-  HowItWorksSlideData,
+  ComparisonSlideData,
+  HowSlideData,
   UseCasesSlideData,
-  ImpactSlideData,
-  LiveCounters 
 } from '@/lib/types';
 import { 
   ProblemSlide, 
-  SolutionSlide, 
-  HowItWorksSlide, 
+  ComparisonSlide, 
+  HowSlide, 
   UseCasesSlide, 
-  ImpactSlide 
 } from '@/components/slides';
 import DeckControls from '@/components/DeckControls';
 import ProgressBar from '@/components/ProgressBar';
 import SpeakerNotes from '@/components/SpeakerNotes';
 
 function DeckContent() {
-  const { language, t } = useLanguage();
+  const { language } = useLanguage();
   const [deckSpec, setDeckSpec] = useState<DeckSpec | null>(null);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [presenterMode, setPresenterMode] = useState(false);
-  const [demoMode, setDemoMode] = useState(true);
   const [isFullscreen, setIsFullscreen] = useState(false);
-  const [counters, setCounters] = useState<LiveCounters>({
-    q_convos_today: 1247,
-    q_docs_today: 186,
-    q_matches_today: 92,
-    q_onboarding_completed: 847,
-  });
 
   useEffect(() => {
     const spec = getDeckSpec();
     setDeckSpec(spec);
     setPresenterMode(spec.meta.ui.presenter_mode_default);
-    setDemoMode(spec.meta.ui.demo_mode_default);
-    
-    setCounters({
-      q_convos_today: spec.data_layer.queries.q_convos_today.mock_value,
-      q_docs_today: spec.data_layer.queries.q_docs_today.mock_value,
-      q_matches_today: spec.data_layer.queries.q_matches_today.mock_value,
-      q_onboarding_completed: spec.data_layer.queries.q_onboarding_completed?.mock_value || 847,
-    });
   }, []);
 
-  const goToSlide = useCallback((index: number) => {
-    if (!deckSpec) return;
-    const maxIndex = deckSpec.slides.length - 1;
-    setCurrentSlide(Math.max(0, Math.min(index, maxIndex)));
+  // Navigation
+  const nextSlide = useCallback(() => {
+    if (deckSpec) {
+      setCurrentSlide(prev => Math.min(prev + 1, deckSpec.slides.length - 1));
+    }
   }, [deckSpec]);
 
-  const nextSlide = useCallback(() => {
-    goToSlide(currentSlide + 1);
-  }, [currentSlide, goToSlide]);
-
   const prevSlide = useCallback(() => {
-    goToSlide(currentSlide - 1);
-  }, [currentSlide, goToSlide]);
+    setCurrentSlide(prev => Math.max(prev - 1, 0));
+  }, []);
 
+  // Keyboard navigation
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) return;
-
-      switch (e.key) {
-        case 'ArrowRight':
-        case 'ArrowDown':
-        case ' ':
-        case 'PageDown':
-          e.preventDefault();
-          nextSlide();
-          break;
-        case 'ArrowLeft':
-        case 'ArrowUp':
-        case 'PageUp':
-          e.preventDefault();
-          prevSlide();
-          break;
-        case 'Home':
-          e.preventDefault();
-          goToSlide(0);
-          break;
-        case 'End':
-          e.preventDefault();
-          goToSlide(deckSpec?.slides.length ? deckSpec.slides.length - 1 : 0);
-          break;
-        case 'p':
-        case 'P':
-          if (!e.metaKey && !e.ctrlKey) {
-            setPresenterMode(prev => !prev);
-          }
-          break;
-        case 'd':
-        case 'D':
-          if (!e.metaKey && !e.ctrlKey) {
-            setDemoMode(prev => !prev);
-          }
-          break;
-        case 'f':
-        case 'F':
-          if (!e.metaKey && !e.ctrlKey) {
-            toggleFullscreen();
-          }
-          break;
-        case 'Escape':
-          if (isFullscreen) {
-            document.exitFullscreen?.();
-          }
-          break;
+      if (e.key === 'ArrowRight' || e.key === ' ') {
+        e.preventDefault();
+        nextSlide();
+      } else if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        prevSlide();
+      } else if (e.key === 'p' || e.key === 'P') {
+        setPresenterMode(prev => !prev);
+      } else if (e.key === 'f' || e.key === 'F') {
+        toggleFullscreen();
       }
     };
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [nextSlide, prevSlide, goToSlide, deckSpec, isFullscreen]);
+  }, [nextSlide, prevSlide]);
 
-  const handleSlideClick = useCallback((e: React.MouseEvent) => {
+  // Click to advance (only on empty areas)
+  const handleSlideClick = (e: React.MouseEvent) => {
     const target = e.target as HTMLElement;
-    if (target.closest('button') || target.closest('a') || target.closest('[role="button"]')) {
-      return;
+    if (!target.closest('button') && !target.closest('a') && !target.closest('input')) {
+      nextSlide();
     }
-    nextSlide();
-  }, [nextSlide]);
+  };
 
-  const toggleFullscreen = useCallback(() => {
+  // Fullscreen
+  const toggleFullscreen = async () => {
     if (!document.fullscreenElement) {
-      document.documentElement.requestFullscreen?.();
+      await document.documentElement.requestFullscreen();
+      setIsFullscreen(true);
     } else {
-      document.exitFullscreen?.();
+      await document.exitFullscreen();
+      setIsFullscreen(false);
     }
-  }, []);
+  };
 
   useEffect(() => {
     const handleFullscreenChange = () => {
@@ -161,27 +106,22 @@ function DeckContent() {
   }
 
   const currentSlideData = deckSpec.slides[currentSlide];
-  const speakerNotesData = (currentSlideData as { speaker_notes?: { es: string[]; en: string[] } }).speaker_notes;
-  const speakerNotes = speakerNotesData ? speakerNotesData[language] : [];
+  const speakerNotes = currentSlideData.speaker_notes?.[language] || [];
 
   const renderSlide = () => {
     switch (currentSlideData.type) {
       case 'ProblemSlide':
         return <ProblemSlide data={currentSlideData as ProblemSlideData} isActive={true} />;
-      case 'SolutionSlide':
-        return <SolutionSlide data={currentSlideData as SolutionSlideData} isActive={true} />;
-      case 'HowItWorksSlide':
-        return <HowItWorksSlide data={currentSlideData as HowItWorksSlideData} isActive={true} />;
+      case 'ComparisonSlide':
+        return <ComparisonSlide data={currentSlideData as ComparisonSlideData} isActive={true} />;
+      case 'HowSlide':
+        return <HowSlide data={currentSlideData as HowSlideData} isActive={true} />;
       case 'UseCasesSlide':
         return <UseCasesSlide data={currentSlideData as UseCasesSlideData} isActive={true} />;
-      case 'ImpactSlide':
-        return <ImpactSlide data={currentSlideData as ImpactSlideData} isActive={true} counters={counters} demoMode={demoMode} />;
       default:
-        return <div className="text-pr-white">Unknown slide type</div>;
+        return <div className="text-pr-white text-center">Unknown slide type</div>;
     }
   };
-
-  const navLabels = t(deckSpec.i18n.nav);
 
   return (
     <div className="min-h-screen bg-pr-charcoal overflow-hidden">
@@ -195,11 +135,18 @@ function DeckContent() {
         <img
           src="/ia-deck/Logo.png"
           alt="PartRunner"
-          width={160}
-          height={40}
+          width={140}
+          height={35}
           className="opacity-90 hover:opacity-100 transition-opacity"
         />
         <LanguageToggle />
+      </div>
+
+      {/* Slide number - top right */}
+      <div className="fixed top-4 right-4 z-50">
+        <div className="bg-pr-dark/80 backdrop-blur-sm border border-pr-gray/30 rounded-lg px-3 py-1.5 text-pr-white/80 text-sm font-mono">
+          {currentSlide + 1} / {deckSpec.slides.length}
+        </div>
       </div>
 
       {/* Slide container */}
@@ -226,59 +173,51 @@ function DeckContent() {
         currentSlide={currentSlide}
         totalSlides={deckSpec.slides.length}
         presenterMode={presenterMode}
-        demoMode={demoMode}
+        demoMode={false}
         isFullscreen={isFullscreen}
         onPrev={prevSlide}
         onNext={nextSlide}
         onTogglePresenter={() => setPresenterMode(prev => !prev)}
-        onToggleDemo={() => setDemoMode(prev => !prev)}
+        onToggleDemo={() => {}}
         onToggleFullscreen={toggleFullscreen}
-        labels={navLabels}
       />
 
       {/* Speaker notes */}
       <SpeakerNotes
         notes={speakerNotes}
         isOpen={presenterMode}
+        onClose={() => setPresenterMode(false)}
         slideNumber={currentSlide + 1}
         totalSlides={deckSpec.slides.length}
-        onClose={() => setPresenterMode(false)}
       />
 
-      {/* Demo mode indicator */}
-      {demoMode && (
-        <div className="fixed top-4 right-4 z-50">
-          <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-pr-amber/20 border border-pr-amber/30">
-            <span className="w-2 h-2 bg-pr-amber rounded-full animate-pulse" />
-            <span className="text-pr-amber text-xs font-medium">{navLabels.demo}</span>
-          </div>
-        </div>
-      )}
-
-      {/* Slide indicator dots */}
-      <div className="fixed bottom-4 left-1/2 -translate-x-1/2 z-40 hidden lg:flex items-center gap-2">
-        {deckSpec.slides.map((_, index) => (
-          <button
-            key={index}
-            onClick={(e) => {
-              e.stopPropagation();
-              goToSlide(index);
-            }}
-            className={`w-2 h-2 rounded-full transition-all duration-300 ${
-              index === currentSlide 
-                ? 'bg-pr-amber w-6' 
-                : 'bg-pr-gray/50 hover:bg-pr-gray'
-            }`}
-          />
-        ))}
+      {/* Keyboard hints (shown briefly) */}
+      <div className="fixed bottom-20 right-4 z-30 text-pr-muted/50 text-xs space-y-1 hidden lg:block">
+        <p>← → navigate</p>
+        <p>P presenter</p>
+        <p>F fullscreen</p>
       </div>
     </div>
   );
 }
 
 export default function DeckPage() {
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  if (!isClient) {
+    return (
+      <div className="min-h-screen bg-pr-charcoal flex items-center justify-center">
+        <div className="w-12 h-12 border-4 border-pr-amber border-t-transparent rounded-full animate-spin" />
+      </div>
+    );
+  }
+
   return (
-    <LanguageProvider defaultLanguage="es">
+    <LanguageProvider>
       <DeckContent />
     </LanguageProvider>
   );

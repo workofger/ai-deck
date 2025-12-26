@@ -7,35 +7,29 @@
     },
     "default_language": "es",
     "available_languages": ["es", "en"],
-    "philosophy": "Small things stacked on top of each other create a huge improved experience",
     "brand": {
       "accent_color_name": "amber",
       "accent_hex_suggestion": "#F5B301",
-      "logo": "/logo-partrunner.svg",
-      "logo_icon": "/logo-icon.svg"
+      "logo": "/ia-deck/Logo.png",
+      "logo_icon": "/ia-deck/Isotipo.png"
     },
     "ui": {
       "show_progress": true,
       "presenter_mode_default": false,
-      "demo_mode_default": true
+      "demo_mode_default": false
     }
   },
   "data_layer": {
     "queries": {
       "q_convos_today": { "mock_value": 1247 },
       "q_docs_today": { "mock_value": 186 },
-      "q_matches_today": { "mock_value": 92 },
-      "q_onboarding_completed": { "mock_value": 847 }
+      "q_matches_today": { "mock_value": 92 }
     }
   },
   "i18n": {
     "nav": {
       "es": { "prev": "Anterior", "next": "Siguiente", "presenter": "Notas", "demo": "Demo", "fullscreen": "Pantalla completa", "language": "Idioma" },
       "en": { "prev": "Previous", "next": "Next", "presenter": "Notes", "demo": "Demo", "fullscreen": "Fullscreen", "language": "Language" }
-    },
-    "labels": {
-      "es": { "live": "EN VIVO", "problem": "Problema", "solution": "Solución", "user_experience": "Experiencia del Usuario", "before": "Antes", "after": "Ahora" },
-      "en": { "live": "LIVE", "problem": "Problem", "solution": "Solution", "user_experience": "User Experience", "before": "Before", "after": "Now" }
     }
   },
   "slides": [
@@ -44,161 +38,123 @@
       "type": "ProblemSlide",
       "content": {
         "es": {
-          "badge": "LA REALIDAD",
-          "headline": "El 80% de los datos de logística desaparecen antes de llegar al sistema",
-          "subheadline": "No es una tesis. Es lo que pasa todos los días.",
-          "metaphor": "Es como un teléfono descompuesto gigante",
-          "stages": [
-            { "label": "Llamada telefónica", "percent": "35%" },
-            { "label": "WhatsApp personal", "percent": "30%" },
-            { "label": "Notas en papel", "percent": "15%" },
-            { "label": "Sistema", "percent": "20%" }
+          "headline": "80% de los datos se pierden antes de llegar al sistema",
+          "bullets": [
+            "Las negociaciones pasan por llamada y WhatsApp — nada queda registrado",
+            "Cuando algo falla, no hay forma de saber qué pasó",
+            "Cuesta millones en ineficiencia cada año"
           ],
-          "stat_label": "de la información operativa se pierde",
-          "stat_context": "Negociaciones, acuerdos, documentos — todo invisible",
-          "reality_points": [
-            { "title": "100% Offline", "desc": "Las negociaciones pasan por llamada. Los acuerdos se cierran por WhatsApp. Nada queda registrado." },
-            { "title": "Visibilidad Cero", "desc": "Cuando algo falla, no hay forma de saber qué pasó. La información ya se perdió." },
-            { "title": "Se Repite Cada Día", "desc": "No es un accidente. Es el proceso normal. Y cuesta millones en ineficiencia." }
-          ],
-          "footnote": "Estimación basada en análisis de patrones de comunicación en operaciones de transporte LATAM."
+          "chart_title": "¿Dónde se pierde la información?",
+          "chart_caption": "Basado en análisis de patrones de comunicación en operaciones de transporte LATAM"
         },
         "en": {
-          "badge": "THE REALITY",
-          "headline": "80% of logistics data disappears before reaching the system",
-          "subheadline": "This isn't theory. It's what happens every day.",
-          "metaphor": "It's like a giant game of telephone",
-          "stages": [
-            { "label": "Phone call", "percent": "35%" },
-            { "label": "Personal WhatsApp", "percent": "30%" },
-            { "label": "Paper notes", "percent": "15%" },
-            { "label": "System", "percent": "20%" }
+          "headline": "80% of data is lost before reaching the system",
+          "bullets": [
+            "Negotiations happen via calls and WhatsApp — nothing gets recorded",
+            "When something fails, there's no way to know what happened",
+            "Costs millions in inefficiency every year"
           ],
-          "stat_label": "of operational information is lost",
-          "stat_context": "Negotiations, agreements, documents — all invisible",
-          "reality_points": [
-            { "title": "100% Offline", "desc": "Negotiations happen over calls. Deals close via WhatsApp. Nothing gets recorded." },
-            { "title": "Zero Visibility", "desc": "When something fails, there's no way to know what happened. The information is already gone." },
-            { "title": "Happens Every Day", "desc": "It's not an accident. It's the normal process. And it costs millions in inefficiency." }
-          ],
-          "footnote": "Estimate based on communication pattern analysis in LATAM transport operations."
+          "chart_title": "Where is information lost?",
+          "chart_caption": "Based on communication pattern analysis in LATAM transport operations"
         }
       },
-      "stat_value": "80%",
-      "image": {
-        "url": "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=1200",
-        "alt": "Logistics warehouse",
-        "overlay": 0.88
-      },
+      "chart_data": [
+        { "name": "Llamadas / Calls", "value": 35, "color": "#ef4444" },
+        { "name": "WhatsApp personal", "value": 30, "color": "#f97316" },
+        { "name": "Notas papel / Paper", "value": 15, "color": "#eab308" },
+        { "name": "Sistema / System", "value": 20, "color": "#22c55e" }
+      ],
       "speaker_notes": {
-        "es": ["ABRIR CON: ¿Alguna vez tomaron una decisión importante sin tener toda la información?", "El 80% no es inventado. Es lo que vemos todos los días.", "Es como jugar teléfono descompuesto, pero con millones de pesos en juego."],
-        "en": ["OPEN WITH: Have you ever made an important decision without having all the information?", "The 80% isn't made up. It's what we see every day.", "It's like playing telephone, but with millions of dollars at stake."]
+        "es": ["El 80% no es inventado — es lo que vemos todos los días.", "La información desaparece en llamadas, WhatsApp, y notas en papel."],
+        "en": ["The 80% isn't made up — it's what we see every day.", "Information disappears in calls, WhatsApp, and paper notes."]
       }
     },
     {
       "id": "s2",
-      "type": "SolutionSlide",
+      "type": "ComparisonSlide",
       "content": {
         "es": {
-          "badge": "EL APPROACH",
-          "headline": "No traemos a los usuarios hacia nosotros.",
-          "headline_accent": "Nosotros vamos hacia ellos.",
-          "subheadline": "AI nos permite estar donde ya están las conversaciones.",
-          "key_insight": {
-            "main": "El usuario no cambia NADA",
-            "detail": "Sigue usando WhatsApp. Sigue haciendo llamadas. Sigue mandando fotos de documentos.",
-            "punchline": "La experiencia es idéntica. La visibilidad es total."
+          "headline": "No traemos usuarios a nosotros. Vamos hacia ellos.",
+          "subheadline": "AI nos permite tener conversaciones donde los usuarios ya están.",
+          "traditional": {
+            "title": "Approach Tradicional",
+            "points": [
+              "Crear portal o app",
+              "Pedir cambio de hábitos",
+              "Entrenar a todos",
+              "Esperar adopción (meses)"
+            ],
+            "result": "Fricción → Resistencia → Fracaso"
           },
-          "pillars": [
-            { "number": "01", "title": "Donde Ya Están", "desc": "WhatsApp, llamadas, chat. Los canales que ya usan y dominan.", "result": "0% fricción" },
-            { "number": "02", "title": "Todo Se Captura", "desc": "Cada mensaje, cada llamada, cada documento. Estructurado automáticamente.", "result": "100% trazabilidad" },
-            { "number": "03", "title": "Escala Inmediata", "desc": "Desplegar un agente AI toma días, no meses. Sin capacitación necesaria.", "result": "10x velocidad" }
-          ],
-          "contrast": {
-            "old_way": { "title": "Approach tradicional", "points": ["Crear portal o app", "Pedir cambio de hábitos", "Entrenar a todos", "Esperar adopción", "Meses de implementación"], "result": "Fricción → Resistencia → Fracaso" },
-            "our_way": { "title": "Nuestro approach", "points": ["Ir a sus canales", "Cero cambio de comportamiento", "AI se adapta a ellos", "Adopción instantánea", "Días de implementación"], "result": "Sin fricción → Adopción natural" }
-          }
+          "ours": {
+            "title": "Nuestro Approach",
+            "points": [
+              "Ir a sus canales",
+              "Cero cambio de comportamiento",
+              "AI se adapta a ellos",
+              "Adopción instantánea (días)"
+            ],
+            "result": "Sin fricción → Adopción natural"
+          },
+          "channels": ["WhatsApp", "Voz", "Chat"]
         },
         "en": {
-          "badge": "THE APPROACH",
-          "headline": "We don't bring users to us.",
-          "headline_accent": "We go to them.",
-          "subheadline": "AI allows us to be where conversations already happen.",
-          "key_insight": {
-            "main": "The user changes NOTHING",
-            "detail": "Still uses WhatsApp. Still makes calls. Still sends document photos.",
-            "punchline": "Experience is identical. Visibility is total."
+          "headline": "We don't bring users to us. We go to them.",
+          "subheadline": "AI allows us to have conversations where users already are.",
+          "traditional": {
+            "title": "Traditional Approach",
+            "points": [
+              "Build portal or app",
+              "Ask for habit change",
+              "Train everyone",
+              "Wait for adoption (months)"
+            ],
+            "result": "Friction → Resistance → Failure"
           },
-          "pillars": [
-            { "number": "01", "title": "Where They Are", "desc": "WhatsApp, calls, chat. Channels they already use and master.", "result": "0% friction" },
-            { "number": "02", "title": "Everything Captured", "desc": "Every message, every call, every document. Automatically structured.", "result": "100% traceability" },
-            { "number": "03", "title": "Instant Scale", "desc": "Deploying an AI agent takes days, not months. No training needed.", "result": "10x speed" }
-          ],
-          "contrast": {
-            "old_way": { "title": "Traditional approach", "points": ["Build portal or app", "Ask for habit change", "Train everyone", "Wait for adoption", "Months of implementation"], "result": "Friction → Resistance → Failure" },
-            "our_way": { "title": "Our approach", "points": ["Go to their channels", "Zero behavior change", "AI adapts to them", "Instant adoption", "Days of implementation"], "result": "No friction → Natural adoption" }
-          }
+          "ours": {
+            "title": "Our Approach",
+            "points": [
+              "Go to their channels",
+              "Zero behavior change",
+              "AI adapts to them",
+              "Instant adoption (days)"
+            ],
+            "result": "No friction → Natural adoption"
+          },
+          "channels": ["WhatsApp", "Voice", "Chat"]
         }
       },
       "speaker_notes": {
-        "es": ["PUNTO CLAVE: No pedimos que cambien. NOSOTROS nos adaptamos.", "¿Por qué pelear contra WhatsApp con 95% penetración?", "El transportista habla igual que siempre. La magia pasa en el backend."],
-        "en": ["KEY POINT: We don't ask them to change. WE adapt.", "Why fight WhatsApp with 95% penetration?", "The driver talks the same as always. The magic happens in the backend."]
+        "es": ["PUNTO CLAVE: No pedimos que cambien. NOSOTROS nos adaptamos.", "El transportista habla igual que siempre. La magia pasa en el backend."],
+        "en": ["KEY POINT: We don't ask them to change. WE adapt.", "The driver talks the same as always. The magic happens in the backend."]
       }
     },
     {
       "id": "s3",
-      "type": "HowItWorksSlide",
+      "type": "HowSlide",
       "content": {
         "es": {
-          "badge": "CÓMO FUNCIONA",
-          "headline": "De conversación caótica a dato estructurado",
-          "subheadline": "Un flujo invisible que convierte WhatsApp en un sistema operativo.",
-          "flow_steps": [
-            { "number": "01", "title": "Captura", "desc": "El usuario manda mensaje o hace llamada. AI escucha y transcribe todo en tiempo real.", "example": "\"Tengo unidad disponible para mañana\"" },
-            { "number": "02", "title": "Normaliza", "desc": "Extraemos los datos clave: vehículo, ruta, precio, disponibilidad, documentos faltantes.", "example": "→ {tipo: 3.5t, ruta: CDMX-QRO}" },
-            { "number": "03", "title": "Enriquece", "desc": "RAG conecta con reglas de negocio, historial del transportista, y contexto de mercado.", "example": "→ Transportista confiable, 47 viajes" },
-            { "number": "04", "title": "Actúa", "desc": "Dispara acciones: onboarding, negociación, match, validación. Escala a humano si es necesario.", "example": "→ Auto-match con carga #4521" }
-          ],
-          "live_example": {
-            "title": "Conversación Real",
-            "messages": [
-              { "from": "fleet", "text": "Buenas, tengo unidad 3.5t disponible hoy para CDMX-QRO" },
-              { "from": "ai", "text": "¡Hola! Confirmo: 3.5t, salida hoy, CDMX→QRO. ¿Cuál es tu tarifa objetivo?" },
-              { "from": "fleet", "text": "6,800. Te mando la tarjeta de circulación" },
-              { "from": "ai", "text": "Recibido ✓ Validando... Detecté que falta la póliza. ¿La tienes?" },
-              { "from": "fleet", "text": "[Envía foto de póliza]" },
-              { "from": "ai", "text": "Perfecto ✓ Te propongo carga #4521 a $6,500. ¿Te interesa?" }
-            ]
-          },
-          "key_point": { "text": "Para el transportista, es solo un chat normal.", "subtext": "Para nosotros, es un pipeline de datos estructurados." }
+          "headline": "Cómo funciona",
+          "steps": [
+            { "number": "1", "title": "Usuario fuera del sistema", "desc": "La información se pierde en llamadas, WhatsApp, notas" },
+            { "number": "2", "title": "Vamos donde ya están", "desc": "AI se conecta a sus canales: WhatsApp, voz, chat" },
+            { "number": "3", "title": "Capturamos + estructuramos", "desc": "Cada mensaje se convierte en dato útil automáticamente" },
+            { "number": "4", "title": "Datos → Acción", "desc": "Matching, verificación, negociación — todo operacional" }
+          ]
         },
         "en": {
-          "badge": "HOW IT WORKS",
-          "headline": "From chaotic conversation to structured data",
-          "subheadline": "An invisible flow that turns WhatsApp into an operating system.",
-          "flow_steps": [
-            { "number": "01", "title": "Capture", "desc": "User sends a message or makes a call. AI listens and transcribes everything in real time.", "example": "\"I have a unit available for tomorrow\"" },
-            { "number": "02", "title": "Normalize", "desc": "We extract key data: vehicle, route, price, availability, missing documents.", "example": "→ {type: 3.5t, route: CDMX-QRO}" },
-            { "number": "03", "title": "Enrich", "desc": "RAG connects with business rules, driver history, and market context.", "example": "→ Reliable driver, 47 trips" },
-            { "number": "04", "title": "Act", "desc": "Triggers actions: onboarding, negotiation, match, validation. Escalates to human if needed.", "example": "→ Auto-match with load #4521" }
-          ],
-          "live_example": {
-            "title": "Real Conversation",
-            "messages": [
-              { "from": "fleet", "text": "Hi, I have a 3.5t unit available today for CDMX-QRO" },
-              { "from": "ai", "text": "Hello! Confirming: 3.5t, departure today, CDMX→QRO. What's your target rate?" },
-              { "from": "fleet", "text": "6,800. Sending my registration card" },
-              { "from": "ai", "text": "Received ✓ Validating... Missing insurance policy. Do you have it?" },
-              { "from": "fleet", "text": "[Sends policy photo]" },
-              { "from": "ai", "text": "Perfect ✓ Proposing load #4521 at $6,500. Interested?" }
-            ]
-          },
-          "key_point": { "text": "For the driver, it's just a normal chat.", "subtext": "For us, it's a structured data pipeline." }
+          "headline": "How it works",
+          "steps": [
+            { "number": "1", "title": "User outside the system", "desc": "Information is lost in calls, WhatsApp, notes" },
+            { "number": "2", "title": "We go where they are", "desc": "AI connects to their channels: WhatsApp, voice, chat" },
+            { "number": "3", "title": "Capture + structure", "desc": "Every message becomes useful data automatically" },
+            { "number": "4", "title": "Data → Action", "desc": "Matching, verification, negotiation — all operational" }
+          ]
         }
       },
       "speaker_notes": {
-        "es": ["MOSTRAR: El transportista no nota nada diferente.", "Cada mensaje se convierte en dato estructurado.", "RAG es clave: sin contexto, AI alucina."],
-        "en": ["SHOW: The driver notices nothing different.", "Every message becomes structured data.", "RAG is key: without context, AI hallucinates."]
+        "es": ["Simple: el usuario no cambia nada. Nosotros capturamos todo.", "Cada paso convierte caos en estructura."],
+        "en": ["Simple: the user changes nothing. We capture everything.", "Each step turns chaos into structure."]
       }
     },
     {
@@ -206,98 +162,44 @@
       "type": "UseCasesSlide",
       "content": {
         "es": {
-          "badge": "EN PRODUCCIÓN",
-          "headline": "4 casos de uso. Pequeñas mejoras que se apilan.",
-          "subheadline": "Cada uno resuelve un punto de fricción real. Juntos, transforman la operación.",
-          "philosophy_note": "\"Pequeñas cosas apiladas crean una experiencia enormemente mejorada.\"",
+          "headline": "Casos de uso en producción",
+          "cta_label": "Ver demo",
           "use_cases": [
-            { "id": "onboarding", "title": "Onboarding via WhatsApp", "subtitle": "Maya — Agente de Afiliación", "color": "green", "status": "live", "problem": "El onboarding manual toma días, pierde leads, y frustra a todos.", "solution": "Maya guía paso a paso por WhatsApp. Documentos, validaciones, todo en chat.", "user_experience": "El transportista manda fotos de sus docs por WhatsApp. Listo.", "metrics": [{ "value": "847", "label": "Completados" }, { "value": "< 24h", "label": "Tiempo" }, { "value": "0", "label": "Formularios" }] },
-            { "id": "pricing", "title": "Pricing Automatizado", "subtitle": "Consultas 24/7", "color": "blue", "status": "live", "problem": "Cotizaciones manuales son lentas e inconsistentes.", "solution": "AI responde pricing instantáneamente con reglas y contexto.", "user_experience": "Pregunta \"¿cuánto cuesta CDMX a MTY?\" y obtiene respuesta en segundos.", "metrics": [{ "value": "< 5s", "label": "Respuesta" }, { "value": "94%", "label": "Precisión" }, { "value": "24/7", "label": "Disponible" }] },
-            { "id": "negotiation", "title": "Negociación por Voz", "subtitle": "Llamadas AI", "color": "purple", "status": "testing", "problem": "Negociar requiere tiempo y expertise. No escala.", "solution": "Agente de voz AI negocia siguiendo playbook definido.", "user_experience": "El transportista recibe llamada normal. No sabe que es AI.", "metrics": [{ "value": "78%", "label": "Éxito" }, { "value": "3 min", "label": "Duración" }, { "value": "A/B", "label": "Testing" }] },
-            { "id": "documents", "title": "Verificación de Docs", "subtitle": "Extracción Automática", "color": "amber", "status": "live", "problem": "Validar documentos es lento y propenso a errores.", "solution": "AI extrae datos, valida vigencia, detecta problemas.", "user_experience": "Manda foto del documento. AI hace todo lo demás.", "metrics": [{ "value": "186", "label": "Hoy" }, { "value": "< 30s", "label": "Por doc" }, { "value": "99%", "label": "Accuracy" }] }
-          ],
-          "stacking": { "title": "El efecto de apilar", "combined": "Juntos: 10x más eficiente con el mismo equipo" }
+            { "id": "onboarding", "title": "Onboarding", "subtitle": "Maya en WhatsApp", "icon": "user-plus", "status": "live" },
+            { "id": "documents", "title": "Verificación de Docs", "subtitle": "Extracción automática", "icon": "file-check", "status": "live" },
+            { "id": "voice", "title": "Voz AI", "subtitle": "Llamadas automatizadas", "icon": "phone", "status": "testing" },
+            { "id": "pricing", "title": "Negociación / Pricing", "subtitle": "Cotizaciones 24/7", "icon": "calculator", "status": "live" }
+          ]
         },
         "en": {
-          "badge": "IN PRODUCTION",
-          "headline": "4 use cases. Small improvements that stack.",
-          "subheadline": "Each solves a real friction point. Together, they transform operations.",
-          "philosophy_note": "\"Small things stacked create a massively improved experience.\"",
+          "headline": "Use cases in production",
+          "cta_label": "View demo",
           "use_cases": [
-            { "id": "onboarding", "title": "WhatsApp Onboarding", "subtitle": "Maya — Onboarding Agent", "color": "green", "status": "live", "problem": "Manual onboarding takes days, loses leads, frustrates everyone.", "solution": "Maya guides step by step via WhatsApp. Documents, validations, all in chat.", "user_experience": "Driver sends doc photos via WhatsApp. Done.", "metrics": [{ "value": "847", "label": "Completed" }, { "value": "< 24h", "label": "Time" }, { "value": "0", "label": "Forms" }] },
-            { "id": "pricing", "title": "Automated Pricing", "subtitle": "24/7 Queries", "color": "blue", "status": "live", "problem": "Manual quotes are slow and inconsistent.", "solution": "AI responds instantly with rules and context.", "user_experience": "Ask \"how much CDMX to MTY?\" and get answer in seconds.", "metrics": [{ "value": "< 5s", "label": "Response" }, { "value": "94%", "label": "Accuracy" }, { "value": "24/7", "label": "Available" }] },
-            { "id": "negotiation", "title": "Voice Negotiation", "subtitle": "AI Calls", "color": "purple", "status": "testing", "problem": "Negotiating requires time and expertise. Doesn't scale.", "solution": "Voice AI agent negotiates following defined playbook.", "user_experience": "Driver receives normal call. Doesn't know it's AI.", "metrics": [{ "value": "78%", "label": "Success" }, { "value": "3 min", "label": "Duration" }, { "value": "A/B", "label": "Testing" }] },
-            { "id": "documents", "title": "Doc Verification", "subtitle": "Auto Extraction", "color": "amber", "status": "live", "problem": "Validating docs is slow and error-prone.", "solution": "AI extracts data, validates expiry, detects issues.", "user_experience": "Send doc photo. AI does the rest.", "metrics": [{ "value": "186", "label": "Today" }, { "value": "< 30s", "label": "Per doc" }, { "value": "99%", "label": "Accuracy" }] }
-          ],
-          "stacking": { "title": "The stacking effect", "combined": "Together: 10x more efficient with same team" }
+            { "id": "onboarding", "title": "Onboarding", "subtitle": "Maya on WhatsApp", "icon": "user-plus", "status": "live" },
+            { "id": "documents", "title": "Doc Verification", "subtitle": "Auto extraction", "icon": "file-check", "status": "live" },
+            { "id": "voice", "title": "AI Voice", "subtitle": "Automated calls", "icon": "phone", "status": "testing" },
+            { "id": "pricing", "title": "Negotiation / Pricing", "subtitle": "24/7 quotes", "icon": "calculator", "status": "live" }
+          ]
         }
       },
+      "demo_url": "https://wa.me/message/partrunner",
       "speaker_notes": {
-        "es": ["Cada caso de uso por sí solo es útil. El poder está en apilarlos.", "Maya es la estrella — onboarding era el mayor pain point."],
-        "en": ["Each use case alone is useful. The power is in stacking them.", "Maya is the star — onboarding was the biggest pain point."]
-      }
-    },
-    {
-      "id": "s5",
-      "type": "ImpactSlide",
-      "content": {
-        "es": {
-          "badge": "EL RESULTADO",
-          "headline": "El negocio funciona mejor",
-          "subheadline": "Cuando capturas todo, puedes mejorar todo. Cuando no hay fricción, hay adopción.",
-          "counters": [
-            { "query_ref": "q_convos_today", "label": "Conversaciones", "sublabel": "capturadas hoy" },
-            { "query_ref": "q_docs_today", "label": "Documentos", "sublabel": "procesados hoy" },
-            { "query_ref": "q_onboarding_completed", "label": "Onboardings", "sublabel": "vía AI total" }
-          ],
-          "business_impact": [
-            { "title": "Visibilidad Total", "before": "80% datos perdidos", "after": "100% capturado" },
-            { "title": "Escala Sin Límites", "before": "Más crecimiento = más headcount", "after": "AI escala, humanos para excepciones" },
-            { "title": "Velocidad", "before": "Meses para nuevas features", "after": "Días para desplegar agentes" }
-          ],
-          "summary": { "text": "No es magia. Son pequeñas mejoras apiladas, ejecutadas donde los usuarios ya están.", "emphasis": "El resultado: un negocio que opera mejor sin pedirle nada diferente a nadie." },
-          "roadmap_title": "Lo que sigue",
-          "roadmap": [
-            { "status": "done", "text": "Onboarding via WhatsApp (Maya)" },
-            { "status": "done", "text": "Verificación de documentos" },
-            { "status": "done", "text": "Pricing automatizado" },
-            { "status": "active", "text": "Negociación por voz (A/B test)" },
-            { "status": "planned", "text": "Matching inteligente" }
-          ],
-          "cta": { "title": "Pruébalo en vivo", "subtitle": "Escanea para chatear con Maya", "button_primary": "Abrir WhatsApp", "button_secondary": "Agendar demo" },
-          "closing": "Adaptándonos a la velocidad y escala que el negocio necesita."
-        },
-        "en": {
-          "badge": "THE RESULT",
-          "headline": "The business works better",
-          "subheadline": "When you capture everything, you can improve everything. When there's no friction, there's adoption.",
-          "counters": [
-            { "query_ref": "q_convos_today", "label": "Conversations", "sublabel": "captured today" },
-            { "query_ref": "q_docs_today", "label": "Documents", "sublabel": "processed today" },
-            { "query_ref": "q_onboarding_completed", "label": "Onboardings", "sublabel": "via AI total" }
-          ],
-          "business_impact": [
-            { "title": "Total Visibility", "before": "80% data lost", "after": "100% captured" },
-            { "title": "Unlimited Scale", "before": "More growth = more headcount", "after": "AI scales, humans for exceptions" },
-            { "title": "Speed", "before": "Months for new features", "after": "Days to deploy agents" }
-          ],
-          "summary": { "text": "It's not magic. It's small stacked improvements, executed where users already are.", "emphasis": "The result: a business that works better without asking anyone to change." },
-          "roadmap_title": "What's next",
-          "roadmap": [
-            { "status": "done", "text": "WhatsApp Onboarding (Maya)" },
-            { "status": "done", "text": "Document verification" },
-            { "status": "done", "text": "Automated pricing" },
-            { "status": "active", "text": "Voice negotiation (A/B test)" },
-            { "status": "planned", "text": "Smart matching" }
-          ],
-          "cta": { "title": "Try it live", "subtitle": "Scan to chat with Maya", "button_primary": "Open WhatsApp", "button_secondary": "Book demo" },
-          "closing": "Adapting to the speed and scale the business needs."
-        }
-      },
-      "speaker_notes": {
-        "es": ["RECAPITULAR: El problema es real. AI lo resuelve. El usuario no cambia nada.", "Pequeñas mejoras apiladas = experiencia enormemente mejorada."],
-        "en": ["RECAP: The problem is real. AI solves it. User changes nothing.", "Small stacked improvements = massively improved experience."]
+        "es": ["Cada caso de uso resuelve un punto de fricción real.", "Hacer click en Ver Demo abre WhatsApp con Maya."],
+        "en": ["Each use case solves a real friction point.", "Clicking View Demo opens WhatsApp with Maya."]
       }
     }
-  ]
+  ],
+  "live_page": {
+    "counters": [
+      { "query_ref": "q_convos_today", "label": { "es": "Conversaciones hoy", "en": "Conversations today" } },
+      { "query_ref": "q_docs_today", "label": { "es": "Documentos procesados", "en": "Documents processed" } },
+      { "query_ref": "q_matches_today", "label": { "es": "Matches propuestos", "en": "Matches proposed" } }
+    ],
+    "video_steps": {
+      "es": ["Usuario envía mensaje", "Verificación de documentos", "Llamada de voz AI", "Negociación / Pricing"],
+      "en": ["User sends message", "Document verification", "AI voice call", "Negotiation / Pricing"]
+    },
+    "qr_enabled": true,
+    "qr_url": "https://wa.me/message/partrunner"
+  }
 }

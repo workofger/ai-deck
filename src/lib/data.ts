@@ -21,7 +21,6 @@ export function getMockCounters(): LiveCounters {
     q_convos_today: spec.data_layer.queries.q_convos_today.mock_value,
     q_docs_today: spec.data_layer.queries.q_docs_today.mock_value,
     q_matches_today: spec.data_layer.queries.q_matches_today.mock_value,
-    q_onboarding_completed: spec.data_layer.queries.q_onboarding_completed?.mock_value || 847,
   };
 }
 
@@ -30,11 +29,6 @@ export async function fetchLiveCounters(): Promise<LiveCounters | null> {
   if (!hasSupabase()) return null;
   
   // TODO: Implement actual Supabase queries
-  // const supabase = createClient(
-  //   process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  //   process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-  // );
-  
   return null;
 }
 
@@ -89,7 +83,6 @@ export function startCounterTicker(
       q_convos_today: initialValues.q_convos_today + Math.floor(Math.random() * 3) + 1,
       q_docs_today: initialValues.q_docs_today + (Math.random() > 0.5 ? 1 : 0),
       q_matches_today: initialValues.q_matches_today + (Math.random() > 0.7 ? 1 : 0),
-      q_onboarding_completed: (initialValues.q_onboarding_completed || 0) + (Math.random() > 0.8 ? 1 : 0),
     });
   }, intervalMs);
 

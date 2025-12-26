@@ -7,7 +7,6 @@ export interface DeckMeta {
   subtitle: BilingualContent<string>;
   default_language: 'es' | 'en';
   available_languages: string[];
-  philosophy: string;
   brand: {
     accent_color_name: string;
     accent_hex_suggestion: string;
@@ -30,7 +29,6 @@ export interface DataLayer {
     q_convos_today: DataLayerQuery;
     q_docs_today: DataLayerQuery;
     q_matches_today: DataLayerQuery;
-    q_onboarding_completed?: DataLayerQuery;
   };
 }
 
@@ -43,14 +41,6 @@ export interface I18n {
     fullscreen: string;
     language: string;
   }>;
-  labels: BilingualContent<{
-    live: string;
-    problem: string;
-    solution: string;
-    user_experience: string;
-    before: string;
-    after: string;
-  }>;
 }
 
 // Live counters for display
@@ -58,169 +48,115 @@ export interface LiveCounters {
   q_convos_today: number;
   q_docs_today: number;
   q_matches_today: number;
-  q_onboarding_completed?: number;
 }
 
-// Slide content types (language-specific)
+// ============================================
+// NEW SIMPLIFIED SLIDE TYPES
+// ============================================
+
+// Slide 1: Problem with pie chart
 export interface ProblemContent {
-  badge: string;
   headline: string;
-  subheadline: string;
-  metaphor: string;
-  stages: Array<{ label: string; percent: string }>;
-  stat_label: string;
-  stat_context: string;
-  reality_points: Array<{ title: string; desc: string }>;
-  footnote: string;
+  bullets: string[];
+  chart_title: string;
+  chart_caption: string;
 }
 
-export interface SolutionContent {
-  badge: string;
-  headline: string;
-  headline_accent: string;
-  subheadline: string;
-  key_insight: {
-    main: string;
-    detail: string;
-    punchline: string;
-  };
-  pillars: Array<{
-    number: string;
-    title: string;
-    desc: string;
-    result: string;
-  }>;
-  contrast: {
-    old_way: { title: string; points: string[]; result: string };
-    our_way: { title: string; points: string[]; result: string };
-  };
-}
-
-export interface HowItWorksContent {
-  badge: string;
-  headline: string;
-  subheadline: string;
-  flow_steps: Array<{
-    number: string;
-    title: string;
-    desc: string;
-    example: string;
-  }>;
-  live_example: {
-    title: string;
-    messages: Array<{ from: string; text: string }>;
-  };
-  key_point: {
-    text: string;
-    subtext: string;
-  };
-}
-
-export interface UseCaseItem {
-  id: string;
-  title: string;
-  subtitle: string;
+export interface ChartDataItem {
+  name: string;
+  value: number;
   color: string;
-  status: 'live' | 'testing' | 'planned';
-  problem: string;
-  solution: string;
-  user_experience: string;
-  metrics: Array<{ value: string; label: string }>;
 }
 
-export interface UseCasesContent {
-  badge: string;
-  headline: string;
-  subheadline: string;
-  philosophy_note: string;
-  use_cases: UseCaseItem[];
-  stacking: {
-    title: string;
-    combined: string;
-  };
-}
-
-export interface ImpactContent {
-  badge: string;
-  headline: string;
-  subheadline: string;
-  counters: Array<{
-    query_ref: string;
-    label: string;
-    sublabel: string;
-  }>;
-  business_impact: Array<{
-    title: string;
-    before: string;
-    after: string;
-  }>;
-  summary: {
-    text: string;
-    emphasis: string;
-  };
-  roadmap_title: string;
-  roadmap: Array<{
-    status: 'done' | 'active' | 'planned';
-    text: string;
-  }>;
-  cta: {
-    title: string;
-    subtitle: string;
-    button_primary: string;
-    button_secondary: string;
-  };
-  closing: string;
-}
-
-// Slide data types
 export interface ProblemSlideData {
   id: string;
   type: 'ProblemSlide';
   content: BilingualContent<ProblemContent>;
-  stat_value: string;
-  image: {
-    url: string;
-    alt: string;
-    overlay: number;
+  chart_data: ChartDataItem[];
+  speaker_notes: BilingualContent<string[]>;
+}
+
+// Slide 2: Comparison (Traditional vs Ours)
+export interface ComparisonContent {
+  headline: string;
+  subheadline: string;
+  traditional: {
+    title: string;
+    points: string[];
+    result: string;
   };
+  ours: {
+    title: string;
+    points: string[];
+    result: string;
+  };
+  channels: string[];
+}
+
+export interface ComparisonSlideData {
+  id: string;
+  type: 'ComparisonSlide';
+  content: BilingualContent<ComparisonContent>;
   speaker_notes: BilingualContent<string[]>;
 }
 
-export interface SolutionSlideData {
+// Slide 3: How it works (4 simple steps)
+export interface HowContent {
+  headline: string;
+  steps: Array<{
+    number: string;
+    title: string;
+    desc: string;
+  }>;
+}
+
+export interface HowSlideData {
   id: string;
-  type: 'SolutionSlide';
-  content: BilingualContent<SolutionContent>;
+  type: 'HowSlide';
+  content: BilingualContent<HowContent>;
   speaker_notes: BilingualContent<string[]>;
 }
 
-export interface HowItWorksSlideData {
+// Slide 4: Use Cases with CTA
+export interface UseCaseSimple {
   id: string;
-  type: 'HowItWorksSlide';
-  content: BilingualContent<HowItWorksContent>;
-  speaker_notes: BilingualContent<string[]>;
+  title: string;
+  subtitle: string;
+  icon: string;
+  status: 'live' | 'testing' | 'planned';
+}
+
+export interface UseCasesContent {
+  headline: string;
+  cta_label: string;
+  use_cases: UseCaseSimple[];
 }
 
 export interface UseCasesSlideData {
   id: string;
   type: 'UseCasesSlide';
   content: BilingualContent<UseCasesContent>;
-  speaker_notes: BilingualContent<string[]>;
-}
-
-export interface ImpactSlideData {
-  id: string;
-  type: 'ImpactSlide';
-  content: BilingualContent<ImpactContent>;
+  demo_url: string;
   speaker_notes: BilingualContent<string[]>;
 }
 
 // Union type for all slides
 export type SlideData = 
   | ProblemSlideData 
-  | SolutionSlideData 
-  | HowItWorksSlideData 
-  | UseCasesSlideData 
-  | ImpactSlideData;
+  | ComparisonSlideData 
+  | HowSlideData 
+  | UseCasesSlideData;
+
+// Live page configuration
+export interface LivePageConfig {
+  counters: Array<{
+    query_ref: string;
+    label: BilingualContent<string>;
+  }>;
+  video_steps: BilingualContent<string[]>;
+  qr_enabled: boolean;
+  qr_url: string;
+}
 
 // Full deck specification
 export interface DeckSpec {
@@ -228,4 +164,5 @@ export interface DeckSpec {
   data_layer: DataLayer;
   i18n: I18n;
   slides: SlideData[];
+  live_page: LivePageConfig;
 }
