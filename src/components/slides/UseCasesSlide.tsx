@@ -105,7 +105,7 @@ function ElevenLabsWidget({ agentId }: { agentId: string }) {
 
   return (
     <div 
-      className="elevenlabs-widget-container"
+      className="elevenlabs-widget-wrapper w-full h-full flex items-center justify-center"
       dangerouslySetInnerHTML={{
         __html: `<elevenlabs-convai agent-id="${agentId}"></elevenlabs-convai>`
       }}
@@ -286,27 +286,21 @@ export default function UseCasesSlide({ data, isActive }: Props) {
                       </>
                     ) : demo?.type === 'elevenlabs' ? (
                       <>
-                        {/* ElevenLabs Voice Widget */}
-                        <div className="flex flex-col items-center justify-center h-full">
-                          <div className="mb-3">
-                            <motion.div 
-                              className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center"
-                              animate={{ scale: [1, 1.1, 1] }}
-                              transition={{ duration: 2, repeat: Infinity }}
-                            >
-                              <Mic className="w-8 h-8 text-white" />
-                            </motion.div>
-                          </div>
-                          <p className="text-white font-semibold text-sm mb-1">
+                        {/* ElevenLabs Voice Widget - Full card layout */}
+                        <div className="flex flex-col items-center justify-center h-full w-full p-2">
+                          <p className="text-white font-bold text-sm mb-1">
                             {demo.qrLabel[language]}
                           </p>
-                          <p className="text-white/70 text-xs mb-3 px-2">
+                          <p className="text-white/70 text-xs mb-2 px-1">
                             {demo.description[language]}
                           </p>
                           
-                          {/* ElevenLabs Widget */}
+                          {/* ElevenLabs Widget Container */}
                           {isFlipped && demo.agentId && (
-                            <div onClick={(e) => e.stopPropagation()} className="relative z-10">
+                            <div 
+                              onClick={(e) => e.stopPropagation()} 
+                              className="relative z-10 flex-1 w-full flex items-center justify-center min-h-[160px]"
+                            >
                               <ElevenLabsWidget agentId={demo.agentId} />
                             </div>
                           )}

@@ -126,14 +126,26 @@ body {
 }
 
 /* ElevenLabs widget container */
-.elevenlabs-widget-container {
+.elevenlabs-widget-wrapper {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 60px;
+  width: 100%;
+  height: 100%;
+  min-height: 140px;
 }
 
-.elevenlabs-widget-container elevenlabs-convai {
+.elevenlabs-widget-wrapper elevenlabs-convai {
   --elevenlabs-convai-widget-color: #F5B301;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Ensure the widget button is visible and centered */
+.elevenlabs-widget-wrapper elevenlabs-convai::part(widget) {
+  transform: scale(1.2);
 }
 
