@@ -1,8 +1,8 @@
 'use client';
 
-import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { UserPlus, FileCheck, Phone, Calculator, ExternalLink, CheckCircle, Clock, Sparkles, ArrowRight, QrCode, RotateCcw, MessageSquare, Play } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
+import { UserPlus, FileCheck, Phone, Calculator, ExternalLink, CheckCircle, Clock, Sparkles, ArrowRight, QrCode, RotateCcw, MessageSquare, Play, Mic } from 'lucide-react';
 import { useLanguage } from '@/lib/language-context';
 import type { UseCasesSlideData } from '@/lib/types';
 
@@ -52,8 +52,9 @@ const metrics: Record<string, { es: string; en: string }[]> = {
 
 // Demo configurations per use case
 const demoConfig: Record<string, { 
-  type: 'qr' | 'button' | 'video';
+  type: 'qr' | 'button' | 'elevenlabs';
   url: string;
+  agentId?: string;
   qrLabel: { es: string; en: string };
   buttonLabel: { es: string; en: string };
   description: { es: string; en: string };
@@ -73,11 +74,12 @@ const demoConfig: Record<string, {
     description: { es: 'Envía una foto de documento y ve la extracción automática', en: 'Send a document photo and see automatic extraction' },
   },
   'voice': {
-    type: 'button',
+    type: 'elevenlabs',
     url: '#',
-    qrLabel: { es: 'Demo de voz', en: 'Voice demo' },
-    buttonLabel: { es: 'Escuchar ejemplo', en: 'Listen to example' },
-    description: { es: 'Escucha una llamada de negociación con AI', en: 'Listen to an AI negotiation call' },
+    agentId: 'agent_01jy023manf7hvc5908ekv23p3',
+    qrLabel: { es: 'Habla con el agente AI', en: 'Talk to AI agent' },
+    buttonLabel: { es: 'Iniciar llamada', en: 'Start call' },
+    description: { es: 'Haz click en el micrófono para iniciar una negociación con AI', en: 'Click the microphone to start an AI negotiation' },
   },
   'pricing': {
     type: 'qr',
@@ -87,6 +89,29 @@ const demoConfig: Record<string, {
     description: { es: 'Pregunta "¿Cuánto cuesta CDMX a MTY?" y obtén respuesta en segundos', en: 'Ask "How much CDMX to MTY?" and get instant response' },
   },
 };
+
+// ElevenLabs widget component
+function ElevenLabsWidget({ agentId }: { agentId: string }) {
+  useEffect(() => {
+    // Load ElevenLabs script if not already loaded
+    if (!document.querySelector('script[src*="elevenlabs/convai-widget"]')) {
+      const script = document.createElement('script');
+      script.src = 'https://unpkg.com/@elevenlabs/convai-widget-embed';
+      script.async = true;
+      script.type = 'text/javascript';
+      document.body.appendChild(script);
+    }
+  }, []);
+
+  return (
+    <div 
+      className="elevenlabs-widget-container"
+      dangerouslySetInnerHTML={{
+        __html: `<elevenlabs-convai agent-id="${agentId}"></elevenlabs-convai>`
+      }}
+    />
+  );
+}
 
 export default function UseCasesSlide({ data, isActive }: Props) {
   const { language } = useLanguage();
@@ -233,7 +258,7 @@ export default function UseCasesSlide({ data, isActive }: Props) {
 
                   {/* BACK of card */}
                   <div 
-                    className={`absolute inset-0 bg-gradient-to-br ${colors.gradient} rounded-xl p-5 flex flex-col items-center justify-center text-center`}
+                    className={`absolute inset-0 bg-gradient-to-br ${colors.gradient} rounded-xl p-5 flex flex-col items-center justify-center text-center overflow-hidden`}
                     style={{ backfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }}
                   >
                     {demo?.type === 'qr' ? (
@@ -259,9 +284,37 @@ export default function UseCasesSlide({ data, isActive }: Props) {
                           {demo.buttonLabel[language]}
                         </a>
                       </>
+                    ) : demo?.type === 'elevenlabs' ? (
+                      <>
+                        {/* ElevenLabs Voice Widget */}
+                        <div className="flex flex-col items-center justify-center h-full">
+                          <div className="mb-3">
+                            <motion.div 
+                              className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center"
+                              animate={{ scale: [1, 1.1, 1] }}
+                              transition={{ duration: 2, repeat: Infinity }}
+                            >
+                              <Mic className="w-8 h-8 text-white" />
+                            </motion.div>
+                          </div>
+                          <p className="text-white font-semibold text-sm mb-1">
+                            {demo.qrLabel[language]}
+                          </p>
+                          <p className="text-white/70 text-xs mb-3 px-2">
+                            {demo.description[language]}
+                          </p>
+                          
+                          {/* ElevenLabs Widget */}
+                          {isFlipped && demo.agentId && (
+                            <div onClick={(e) => e.stopPropagation()} className="relative z-10">
+                              <ElevenLabsWidget agentId={demo.agentId} />
+                            </div>
+                          )}
+                        </div>
+                      </>
                     ) : (
                       <>
-                        {/* Button action */}
+                        {/* Button action (fallback) */}
                         <div className="w-20 h-20 bg-white/20 rounded-full flex items-center justify-center mb-4">
                           <Play className="w-10 h-10 text-white" />
                         </div>

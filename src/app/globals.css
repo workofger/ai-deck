@@ -125,3 +125,15 @@ body {
   -webkit-backdrop-filter: blur(12px);
 }
 
+/* ElevenLabs widget container */
+.elevenlabs-widget-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 60px;
+}
+
+.elevenlabs-widget-container elevenlabs-convai {
+  --elevenlabs-convai-widget-color: #F5B301;
+}
+
