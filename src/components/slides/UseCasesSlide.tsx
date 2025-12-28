@@ -191,14 +191,21 @@ export default function UseCasesSlide({ data, isActive }: Props) {
             const useCaseMetrics = metrics[useCase.id] || [];
             const demo = demoConfig[useCase.id];
             const isFlipped = flippedCards.has(useCase.id);
+            const isVoiceCard = useCase.id === 'voice';
+            const isVoiceExpanded = isVoiceCard && isFlipped;
             
             return (
               <motion.div
                 key={useCase.id}
                 variants={itemVariants}
-                className="relative h-[280px] cursor-pointer"
+                className={`relative cursor-pointer ${isVoiceExpanded ? 'lg:col-span-2 lg:row-span-2 z-20' : ''}`}
                 style={{ perspective: '1000px' }}
                 onClick={(e) => toggleFlip(useCase.id, e)}
+                layout
+                animate={{
+                  height: isVoiceExpanded ? 400 : 280,
+                }}
+                transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
               >
                 <motion.div
                   className="relative w-full h-full"
@@ -286,24 +293,31 @@ export default function UseCasesSlide({ data, isActive }: Props) {
                       </>
                     ) : demo?.type === 'elevenlabs' ? (
                       <>
-                        {/* ElevenLabs Voice Widget - Full card layout */}
-                        <div className="flex flex-col items-center justify-center h-full w-full p-2">
-                          <p className="text-white font-bold text-sm mb-1">
-                            {demo.qrLabel[language]}
-                          </p>
-                          <p className="text-white/70 text-xs mb-2 px-1">
-                            {demo.description[language]}
-                          </p>
+                        {/* ElevenLabs Voice Widget - Expanded layout */}
+                        <div className="flex flex-col items-center justify-start h-full w-full p-4 pt-6">
+                          <div className="text-center mb-4">
+                            <p className="text-white font-bold text-lg mb-1">
+                              {demo.qrLabel[language]}
+                            </p>
+                            <p className="text-white/70 text-sm px-2">
+                              {demo.description[language]}
+                            </p>
+                          </div>
                           
-                          {/* ElevenLabs Widget Container */}
+                          {/* ElevenLabs Widget Container - Large */}
                           {isFlipped && demo.agentId && (
                             <div 
                               onClick={(e) => e.stopPropagation()} 
-                              className="relative z-10 flex-1 w-full flex items-center justify-center min-h-[160px]"
+                              className="relative z-10 flex-1 w-full flex items-center justify-center"
+                              style={{ minHeight: '280px' }}
                             >
                               <ElevenLabsWidget agentId={demo.agentId} />
                             </div>
                           )}
+                          
+                          <p className="text-white/50 text-xs mt-2">
+                            {language === 'es' ? 'Haz click en el botón para hablar' : 'Click the button to talk'}
+                          </p>
                         </div>
                       </>
                     ) : (

@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { PieChart, Pie, Cell, ResponsiveContainer } from 'recharts';
-import { AlertTriangle, Phone, MessageSquare, FileText, Database } from 'lucide-react';
+import { AlertTriangle, Phone, MessageSquare, FileText } from 'lucide-react';
 import { useLanguage } from '@/lib/language-context';
 import type { ProblemSlideData } from '@/lib/types';
 
@@ -15,7 +15,6 @@ const channelIcons = [
   <Phone key="1" className="w-5 h-5" />,
   <MessageSquare key="2" className="w-5 h-5" />,
   <FileText key="3" className="w-5 h-5" />,
-  <Database key="4" className="w-5 h-5" />,
 ];
 
 export default function ProblemSlide({ data, isActive }: Props) {
@@ -120,7 +119,7 @@ export default function ProblemSlide({ data, isActive }: Props) {
                 {content.chart_title}
               </h3>
               <p className="text-pr-muted text-sm mb-4 text-center">
-                {language === 'es' ? 'Distribución de pérdida de información' : 'Information loss distribution'}
+                {language === 'es' ? 'Distribución del 80% que se pierde' : 'Distribution of the 80% that is lost'}
               </p>
               
               <div className="h-[260px] relative">

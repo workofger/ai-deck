@@ -59,10 +59,9 @@
         }
       },
       "chart_data": [
-        { "name": "Llamadas / Calls", "value": 35, "color": "#ef4444" },
-        { "name": "WhatsApp personal", "value": 30, "color": "#f97316" },
-        { "name": "Notas papel / Paper", "value": 15, "color": "#eab308" },
-        { "name": "Sistema / System", "value": 20, "color": "#22c55e" }
+        { "name": "Llamadas / Calls", "value": 44, "color": "#ef4444" },
+        { "name": "WhatsApp personal", "value": 37, "color": "#f97316" },
+        { "name": "Notas papel / Paper", "value": 19, "color": "#eab308" }
       ],
       "speaker_notes": {
         "es": ["El 80% no es inventado — es lo que vemos todos los días.", "La información desaparece en llamadas, WhatsApp, y notas en papel."],
