@@ -158,33 +158,33 @@ export default function UseCasesSlide({ data, isActive }: Props) {
       />
 
       <motion.div
-        className="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-12 py-6"
+        className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 py-4 sm:py-6 overflow-y-auto max-h-full"
         variants={containerVariants}
         initial="hidden"
         animate={isActive ? "visible" : "hidden"}
       >
         {/* Badge */}
-        <motion.div variants={itemVariants} className="flex items-center gap-2 mb-4">
-          <Sparkles className="w-4 h-4 text-pr-amber" />
-          <span className="text-pr-amber text-sm font-bold tracking-wider uppercase">
+        <motion.div variants={itemVariants} className="flex items-center gap-2 mb-3 sm:mb-4">
+          <Sparkles className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-pr-amber" />
+          <span className="text-pr-amber text-xs sm:text-sm font-bold tracking-wider uppercase">
             {language === 'es' ? 'En Producción' : 'In Production'}
           </span>
         </motion.div>
 
         {/* Headline */}
-        <motion.div variants={itemVariants} className="mb-6">
-          <h1 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-pr-white">
+        <motion.div variants={itemVariants} className="mb-4 sm:mb-6">
+          <h1 className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-pr-white">
             {content.headline}
           </h1>
-          <p className="text-pr-muted text-lg mt-2">
+          <p className="text-pr-muted text-sm sm:text-lg mt-1 sm:mt-2">
             {language === 'es' 
-              ? 'Haz click en cada tarjeta para probar el demo →'
-              : 'Click each card to try the demo →'}
+              ? 'Toca cada tarjeta para probar el demo →'
+              : 'Tap each card to try the demo →'}
           </p>
         </motion.div>
 
-        {/* Use case cards with flip animation */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+        {/* Use case cards with flip animation - scrollable on mobile */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mb-6 sm:mb-8">
           {content.use_cases.map((useCase, i) => {
             const status = statusConfig[useCase.status];
             const colors = colorConfig[useCase.id] || colorConfig['onboarding'];
@@ -198,12 +198,12 @@ export default function UseCasesSlide({ data, isActive }: Props) {
               <motion.div
                 key={useCase.id}
                 variants={itemVariants}
-                className={`relative cursor-pointer ${isVoiceExpanded ? 'lg:col-span-2 lg:row-span-2 z-20' : ''}`}
+                className={`relative cursor-pointer ${isVoiceExpanded ? 'sm:col-span-2 lg:col-span-2 lg:row-span-2 z-20' : ''}`}
                 style={{ perspective: '1000px' }}
                 onClick={(e) => toggleFlip(useCase.id, e)}
                 layout
                 animate={{
-                  height: isVoiceExpanded ? 400 : 280,
+                  height: isVoiceExpanded ? 350 : 240,
                 }}
                 transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
               >
@@ -216,23 +216,23 @@ export default function UseCasesSlide({ data, isActive }: Props) {
                 >
                   {/* FRONT of card */}
                   <div 
-                    className={`absolute inset-0 bg-pr-dark/70 border ${colors.border} rounded-xl p-5 hover:shadow-lg ${colors.glow} transition-all duration-300 group`}
+                    className={`absolute inset-0 bg-pr-dark/70 border ${colors.border} rounded-xl p-3 sm:p-5 hover:shadow-lg ${colors.glow} transition-all duration-300 group`}
                     style={{ backfaceVisibility: 'hidden' }}
                   >
                     {/* Status badge */}
-                    <div className="flex items-center justify-between mb-4">
-                      <div className={`w-14 h-14 rounded-xl ${colors.bg} flex items-center justify-center ${colors.text} group-hover:scale-105 transition-transform`}>
-                        {iconMap[useCase.icon] || <FileCheck className="w-8 h-8" />}
+                    <div className="flex items-center justify-between mb-3 sm:mb-4">
+                      <div className={`w-10 h-10 sm:w-14 sm:h-14 rounded-xl ${colors.bg} flex items-center justify-center ${colors.text} group-hover:scale-105 transition-transform`}>
+                        {iconMap[useCase.icon] || <FileCheck className="w-6 h-6 sm:w-8 sm:h-8" />}
                       </div>
-                      <span className={`flex items-center gap-1.5 text-xs font-bold ${status.textColor}`}>
+                      <span className={`flex items-center gap-1 sm:gap-1.5 text-[10px] sm:text-xs font-bold ${status.textColor}`}>
                         {useCase.status === 'live' ? (
                           <>
-                            <span className={`w-2 h-2 rounded-full ${status.dotColor} animate-pulse`} />
+                            <span className={`w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full ${status.dotColor} animate-pulse`} />
                             {status.label}
                           </>
                         ) : (
                           <>
-                            <Clock className="w-3.5 h-3.5" />
+                            <Clock className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
                             {status.label}
                           </>
                         )}
@@ -240,44 +240,44 @@ export default function UseCasesSlide({ data, isActive }: Props) {
                     </div>
 
                     {/* Title & Subtitle */}
-                    <h3 className="text-pr-white font-bold text-lg mb-1">
+                    <h3 className="text-pr-white font-bold text-base sm:text-lg mb-0.5 sm:mb-1">
                       {useCase.title}
                     </h3>
-                    <p className="text-pr-muted text-sm mb-4">
+                    <p className="text-pr-muted text-xs sm:text-sm mb-2 sm:mb-4 line-clamp-2">
                       {useCase.subtitle}
                     </p>
 
                     {/* Mini metrics */}
-                    <div className="flex flex-wrap gap-2 mb-4">
+                    <div className="flex flex-wrap gap-1.5 sm:gap-2 mb-2 sm:mb-4">
                       {useCaseMetrics.map((metric, j) => (
-                        <span key={j} className={`text-xs px-2 py-1 rounded-full ${colors.bg} ${colors.text}`}>
+                        <span key={j} className={`text-[10px] sm:text-xs px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full ${colors.bg} ${colors.text}`}>
                           {metric[language]}
                         </span>
                       ))}
                     </div>
 
                     {/* Click hint */}
-                    <div className="absolute bottom-4 right-4 flex items-center gap-1 text-pr-muted text-xs group-hover:text-pr-amber transition-colors">
+                    <div className="absolute bottom-2 sm:bottom-4 right-2 sm:right-4 flex items-center gap-1 text-pr-muted text-[10px] sm:text-xs group-hover:text-pr-amber transition-colors">
                       <span>{language === 'es' ? 'Ver demo' : 'View demo'}</span>
-                      <RotateCcw className="w-3.5 h-3.5" />
+                      <RotateCcw className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
                     </div>
                   </div>
 
                   {/* BACK of card */}
                   <div 
-                    className={`absolute inset-0 bg-gradient-to-br ${colors.gradient} rounded-xl p-5 flex flex-col items-center justify-center text-center overflow-hidden`}
+                    className={`absolute inset-0 bg-gradient-to-br ${colors.gradient} rounded-xl p-3 sm:p-5 flex flex-col items-center justify-center text-center overflow-hidden`}
                     style={{ backfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }}
                   >
                     {demo?.type === 'qr' ? (
                       <>
                         {/* QR Code */}
-                        <div className="w-28 h-28 bg-white rounded-xl flex items-center justify-center mb-4 shadow-lg">
-                          <QrCode className="w-24 h-24 text-pr-charcoal" />
+                        <div className="w-20 h-20 sm:w-28 sm:h-28 bg-white rounded-xl flex items-center justify-center mb-2 sm:mb-4 shadow-lg">
+                          <QrCode className="w-16 h-16 sm:w-24 sm:h-24 text-pr-charcoal" />
                         </div>
-                        <p className="text-white font-semibold text-sm mb-2">
+                        <p className="text-white font-semibold text-xs sm:text-sm mb-1 sm:mb-2">
                           {demo.qrLabel[language]}
                         </p>
-                        <p className="text-white/70 text-xs mb-4 px-2">
+                        <p className="text-white/70 text-[10px] sm:text-xs mb-2 sm:mb-4 px-2 line-clamp-2">
                           {demo.description[language]}
                         </p>
                         <a
@@ -285,66 +285,66 @@ export default function UseCasesSlide({ data, isActive }: Props) {
                           target="_blank"
                           rel="noopener noreferrer"
                           onClick={(e) => e.stopPropagation()}
-                          className="inline-flex items-center gap-2 bg-white/20 hover:bg-white/30 text-white text-sm font-medium px-4 py-2 rounded-lg transition-colors"
+                          className="inline-flex items-center gap-1.5 sm:gap-2 bg-white/20 hover:bg-white/30 active:bg-white/40 text-white text-xs sm:text-sm font-medium px-3 sm:px-4 py-2 rounded-lg transition-colors min-h-[44px]"
                         >
-                          <MessageSquare className="w-4 h-4" />
+                          <MessageSquare className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                           {demo.buttonLabel[language]}
                         </a>
                       </>
                     ) : demo?.type === 'elevenlabs' ? (
                       <>
-                        {/* ElevenLabs Voice Widget - Expanded layout */}
-                        <div className="flex flex-col items-center justify-start h-full w-full p-4 pt-6">
-                          <div className="text-center mb-4">
-                            <p className="text-white font-bold text-lg mb-1">
+                        {/* ElevenLabs Voice Widget - Responsive layout */}
+                        <div className="flex flex-col items-center justify-start h-full w-full p-2 sm:p-4 pt-3 sm:pt-6">
+                          <div className="text-center mb-2 sm:mb-4">
+                            <p className="text-white font-bold text-sm sm:text-lg mb-0.5 sm:mb-1">
                               {demo.qrLabel[language]}
                             </p>
-                            <p className="text-white/70 text-sm px-2">
+                            <p className="text-white/70 text-[10px] sm:text-sm px-2">
                               {demo.description[language]}
                             </p>
                           </div>
                           
-                          {/* ElevenLabs Widget Container - Large */}
+                          {/* ElevenLabs Widget Container */}
                           {isFlipped && demo.agentId && (
                             <div 
                               onClick={(e) => e.stopPropagation()} 
                               className="relative z-10 flex-1 w-full flex items-center justify-center"
-                              style={{ minHeight: '280px' }}
+                              style={{ minHeight: '180px' }}
                             >
                               <ElevenLabsWidget agentId={demo.agentId} />
                             </div>
                           )}
                           
-                          <p className="text-white/50 text-xs mt-2">
-                            {language === 'es' ? 'Haz click en el botón para hablar' : 'Click the button to talk'}
+                          <p className="text-white/50 text-[10px] sm:text-xs mt-1 sm:mt-2">
+                            {language === 'es' ? 'Toca el botón para hablar' : 'Tap the button to talk'}
                           </p>
                         </div>
                       </>
                     ) : (
                       <>
                         {/* Button action (fallback) */}
-                        <div className="w-20 h-20 bg-white/20 rounded-full flex items-center justify-center mb-4">
-                          <Play className="w-10 h-10 text-white" />
+                        <div className="w-14 h-14 sm:w-20 sm:h-20 bg-white/20 rounded-full flex items-center justify-center mb-2 sm:mb-4">
+                          <Play className="w-7 h-7 sm:w-10 sm:h-10 text-white" />
                         </div>
-                        <p className="text-white font-semibold text-sm mb-2">
+                        <p className="text-white font-semibold text-xs sm:text-sm mb-1 sm:mb-2">
                           {demo?.qrLabel[language]}
                         </p>
-                        <p className="text-white/70 text-xs mb-4 px-2">
+                        <p className="text-white/70 text-[10px] sm:text-xs mb-2 sm:mb-4 px-2">
                           {demo?.description[language]}
                         </p>
                         <button
                           onClick={(e) => e.stopPropagation()}
-                          className="inline-flex items-center gap-2 bg-white/20 hover:bg-white/30 text-white text-sm font-medium px-4 py-2 rounded-lg transition-colors"
+                          className="inline-flex items-center gap-1.5 sm:gap-2 bg-white/20 hover:bg-white/30 active:bg-white/40 text-white text-xs sm:text-sm font-medium px-3 sm:px-4 py-2 rounded-lg transition-colors min-h-[44px]"
                         >
-                          <Play className="w-4 h-4" />
+                          <Play className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                           {demo?.buttonLabel[language]}
                         </button>
                       </>
                     )}
 
                     {/* Flip back hint */}
-                    <div className="absolute bottom-3 right-3 flex items-center gap-1 text-white/60 text-xs">
-                      <RotateCcw className="w-3.5 h-3.5" />
+                    <div className="absolute bottom-2 sm:bottom-3 right-2 sm:right-3 flex items-center gap-1 text-white/60 text-[10px] sm:text-xs">
+                      <RotateCcw className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
                     </div>
                   </div>
                 </motion.div>
@@ -354,14 +354,14 @@ export default function UseCasesSlide({ data, isActive }: Props) {
         </div>
 
         {/* Bottom CTA section */}
-        <motion.div variants={itemVariants} className="flex flex-col md:flex-row items-center justify-between gap-6 p-5 bg-pr-dark/50 border border-pr-amber/30 rounded-xl">
-          <div className="text-center md:text-left">
-            <p className="text-pr-white font-semibold text-lg">
+        <motion.div variants={itemVariants} className="flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-6 p-3 sm:p-5 bg-pr-dark/50 border border-pr-amber/30 rounded-xl">
+          <div className="text-center sm:text-left">
+            <p className="text-pr-white font-semibold text-sm sm:text-lg">
               {language === 'es' 
-                ? '💡 Pequeñas cosas apiladas crean una experiencia enormemente mejorada'
-                : '💡 Small things stacked create a massively improved experience'}
+                ? '💡 Pequeñas cosas apiladas crean una experiencia mejorada'
+                : '💡 Small things stacked create a better experience'}
             </p>
-            <p className="text-pr-muted text-sm mt-1">
+            <p className="text-pr-muted text-xs sm:text-sm mt-0.5 sm:mt-1 hidden sm:block">
               {language === 'es'
                 ? 'Cada caso de uso por sí solo es útil. El poder está en apilarlos.'
                 : 'Each use case alone is useful. The power is in stacking them.'}
@@ -373,11 +373,11 @@ export default function UseCasesSlide({ data, isActive }: Props) {
             href={data.demo_url}
             target="_blank"
             rel="noopener noreferrer"
-            className="group inline-flex items-center gap-3 bg-pr-amber hover:bg-pr-amber-light text-pr-charcoal font-bold text-lg px-8 py-4 rounded-xl transition-all duration-300 shadow-lg hover:shadow-pr-amber/30 hover:scale-105 whitespace-nowrap"
+            className="group inline-flex items-center justify-center gap-2 sm:gap-3 bg-pr-amber hover:bg-pr-amber-light active:bg-pr-amber text-pr-charcoal font-bold text-sm sm:text-lg px-4 sm:px-8 py-3 sm:py-4 rounded-xl transition-all duration-300 shadow-lg hover:shadow-pr-amber/30 sm:hover:scale-105 whitespace-nowrap w-full sm:w-auto min-h-[44px]"
           >
-            <ExternalLink className="w-5 h-5" />
+            <ExternalLink className="w-4 h-4 sm:w-5 sm:h-5" />
             {content.cta_label}
-            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
           </a>
         </motion.div>
       </motion.div>
