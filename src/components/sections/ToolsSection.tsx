@@ -23,12 +23,13 @@ const categoryTitles: Record<string, string> = {
   discontinued: "Transitioned Out",
 };
 
-const categoryColors: Record<string, string> = {
-  core: "blue",
-  development: "emerald",
-  ai: "violet",
-  ops: "cyan",
-  discontinued: "rose",
+// Inline styles to prevent Tailwind purging
+const categoryStyles: Record<string, { bg: string; text: string; glow: "blue" | "emerald" | "violet" | "cyan" | "rose" }> = {
+  core: { bg: "rgba(59, 130, 246, 0.2)", text: "#3B82F6", glow: "blue" },
+  development: { bg: "rgba(16, 185, 129, 0.2)", text: "#10B981", glow: "emerald" },
+  ai: { bg: "rgba(139, 92, 246, 0.2)", text: "#8B5CF6", glow: "violet" },
+  ops: { bg: "rgba(6, 182, 212, 0.2)", text: "#06B6D4", glow: "cyan" },
+  discontinued: { bg: "rgba(244, 63, 94, 0.2)", text: "#F43F5E", glow: "rose" },
 };
 
 export function ToolsSection() {
@@ -44,7 +45,7 @@ export function ToolsSection() {
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
         {Object.entries(tools).map(([category, toolList], categoryIndex) => {
           const IconComponent = categoryIcons[category];
-          const color = categoryColors[category];
+          const styles = categoryStyles[category];
           
           return (
             <motion.div
@@ -55,13 +56,19 @@ export function ToolsSection() {
               transition={{ duration: 0.4, delay: categoryIndex * 0.1 }}
             >
               <Card 
-                glow={color as "blue" | "emerald" | "violet" | "cyan" | "rose"} 
+                glow={styles.glow} 
                 hover={false}
                 className={category === "discontinued" ? "opacity-70" : ""}
               >
                 <div className="flex items-center gap-3 mb-4">
-                  <div className={`p-2 rounded-lg bg-${color}/20`}>
-                    <IconComponent className={`w-5 h-5 text-${color}`} />
+                  <div 
+                    className="p-2 rounded-lg"
+                    style={{ backgroundColor: styles.bg }}
+                  >
+                    <IconComponent 
+                      className="w-5 h-5" 
+                      style={{ color: styles.text }}
+                    />
                   </div>
                   <h3 className="font-semibold text-white">{categoryTitles[category]}</h3>
                 </div>
@@ -115,14 +122,17 @@ export function ToolsSection() {
                 className="flex items-center"
               >
                 <div className="relative">
-                  <div className="p-4 rounded-xl bg-slate-dark border border-slate-mid hover:border-blue transition-colors group">
+                  <div className="p-4 rounded-xl bg-slate-dark border border-slate-mid hover:border-pr-yellow transition-colors group">
                     <div className="flex items-center gap-2 mb-2">
-                      <span className="w-6 h-6 rounded-full bg-blue/20 text-blue text-xs font-mono flex items-center justify-center">
+                      <span 
+                        className="w-6 h-6 rounded-full text-xs font-mono flex items-center justify-center"
+                        style={{ backgroundColor: "rgba(250, 204, 21, 0.2)", color: "#FACC15" }}
+                      >
                         {step.step}
                       </span>
                       <span className="text-sm font-medium text-white">{step.name}</span>
                     </div>
-                    <p className="text-xs text-cyan font-mono">{step.tool}</p>
+                    <p className="text-xs font-mono" style={{ color: "#06B6D4" }}>{step.tool}</p>
                     <p className="text-xs text-slate-muted mt-1 max-w-[150px]">{step.description}</p>
                   </div>
                 </div>
@@ -177,4 +187,3 @@ export function ToolsSection() {
     </SectionWrapper>
   );
 }
-

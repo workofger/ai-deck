@@ -73,9 +73,10 @@ interface IconProps {
   name: IconName;
   size?: number;
   className?: string;
+  style?: React.CSSProperties;
 }
 
-export function Icon({ name, size = 24, className }: IconProps) {
+export function Icon({ name, size = 24, className, style }: IconProps) {
   const IconComponent = iconMap[name];
   
   if (!IconComponent) {
@@ -83,7 +84,7 @@ export function Icon({ name, size = 24, className }: IconProps) {
     return null;
   }
   
-  return <IconComponent size={size} className={cn(className)} />;
+  return <IconComponent size={size} className={cn(className)} style={style} />;
 }
 
 export type { IconName };

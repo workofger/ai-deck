@@ -150,7 +150,7 @@ export function Navigation() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 20 }}
             onClick={() => scrollToSection("hero")}
-            className="fixed bottom-6 right-6 z-50 p-3 bg-slate-dark/80 backdrop-blur-sm rounded-full border border-slate-mid hover:border-blue transition-colors"
+            className="fixed bottom-6 right-6 z-50 p-3 bg-slate-dark/80 backdrop-blur-sm rounded-full border border-slate-mid transition-colors hover:border-yellow-400"
             aria-label="Back to top"
           >
             <ChevronUp size={20} />
