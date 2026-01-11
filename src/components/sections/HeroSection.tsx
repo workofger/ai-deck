@@ -2,7 +2,8 @@
 
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronDown, Truck } from "lucide-react";
+import { ChevronDown } from "lucide-react";
+import Image from "next/image";
 
 // Fixed positions for particles to avoid hydration mismatch
 const particlePositions = [
@@ -176,17 +177,21 @@ export function HeroSection() {
 
       {/* Content */}
       <div className="relative z-10 text-center px-4">
-        {/* Partrunner Logo Mark */}
+        {/* Partrunner Logo */}
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5 }}
           className="mb-8 flex justify-center"
         >
-          <div className="flex items-center gap-3 px-4 py-2 rounded-full bg-slate-dark/50 border border-slate-mid">
-            <Truck className="w-5 h-5 text-pr-orange" />
-            <span className="text-sm font-semibold text-white tracking-wide">PARTRUNNER</span>
-          </div>
+          <Image
+            src="/logo-partrunner.png"
+            alt="Partrunner"
+            width={200}
+            height={50}
+            className="h-10 w-auto"
+            priority
+          />
         </motion.div>
 
         {/* Main Title with Typewriter Effect */}

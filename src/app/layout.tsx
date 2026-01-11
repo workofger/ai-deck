@@ -9,14 +9,79 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Partrunner Infrastructure & AI Enablement | Technical Report",
-  description: "An interactive exploration of 6 months building practical AI infrastructure at Partrunner. From experiments to production-ready systems.",
-  keywords: ["AI infrastructure", "machine learning", "logistics", "marketplace", "technical report"],
-  authors: [{ name: "Gerry" }],
+  title: "Partrunner | Infrastructure & AI Enablement",
+  description: "This isn't another AI demo. This is what it actually takes. 6 months of building practical AI infrastructure at Partrunner — process, decisions, and learnings.",
+  keywords: ["Partrunner", "AI infrastructure", "machine learning", "logistics", "marketplace", "technical report", "B2B logistics"],
+  authors: [{ name: "Gerry", url: "https://partrunner.com" }],
+  creator: "Partrunner",
+  publisher: "Partrunner",
+  
+  // Favicon and Icons
+  icons: {
+    icon: [
+      { url: "/favicon.png", type: "image/png" },
+      { url: "/icon-partrunner.png", type: "image/png", sizes: "192x192" },
+    ],
+    apple: [
+      { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+    ],
+    shortcut: "/favicon.png",
+  },
+  
+  // Open Graph - For Facebook, LinkedIn, WhatsApp, etc.
   openGraph: {
-    title: "Partrunner Infrastructure & AI Enablement",
-    description: "This isn't another AI demo. This is what it actually takes.",
     type: "website",
+    locale: "en_US",
+    url: "https://ai-deck.vercel.app",
+    siteName: "Partrunner",
+    title: "Partrunner | Infrastructure & AI Enablement",
+    description: "This isn't another AI demo. This is what it actually takes. 6 months of building practical AI infrastructure — process, decisions, and learnings.",
+    images: [
+      {
+        url: "/logo-partrunner.png",
+        width: 1200,
+        height: 630,
+        alt: "Partrunner - Infrastructure & AI Enablement",
+        type: "image/png",
+      },
+    ],
+  },
+  
+  // Twitter Card
+  twitter: {
+    card: "summary_large_image",
+    title: "Partrunner | Infrastructure & AI Enablement",
+    description: "This isn't another AI demo. This is what it actually takes. 6 months building practical AI infrastructure.",
+    images: ["/logo-partrunner.png"],
+    creator: "@partrunner",
+  },
+  
+  // Additional metadata
+  applicationName: "Partrunner AI Deck",
+  referrer: "origin-when-cross-origin",
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+  
+  // Theme color for mobile browsers
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#2563EB" },
+    { media: "(prefers-color-scheme: dark)", color: "#0F1729" },
+  ],
+  
+  // Viewport
+  viewport: {
+    width: "device-width",
+    initialScale: 1,
+    maximumScale: 5,
+  },
+  
+  // Robots
+  robots: {
+    index: true,
+    follow: true,
   },
 };
 
@@ -27,6 +92,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-smooth">
+      <head>
+        {/* Additional meta tags for better link previews */}
+        <meta property="og:logo" content="/icon-partrunner.png" />
+        <link rel="icon" href="/favicon.png" type="image/png" />
+      </head>
       <body className={`${inter.variable} antialiased`}>
         {children}
       </body>

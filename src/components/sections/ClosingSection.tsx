@@ -1,7 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowUp, FileText, Layers, FlaskConical } from "lucide-react";
+import { ArrowUp, Layers, FlaskConical } from "lucide-react";
+import Image from "next/image";
 
 export function ClosingSection() {
   const scrollToSection = (id: string) => {
@@ -151,8 +152,17 @@ export function ClosingSection() {
           transition={{ duration: 0.6, delay: 0.7 }}
           className="mt-16 pt-8 border-t border-slate-mid/30"
         >
+          <div className="flex justify-center mb-4">
+            <Image
+              src="/logo-partrunner.png"
+              alt="Partrunner"
+              width={150}
+              height={40}
+              className="h-8 w-auto opacity-60"
+            />
+          </div>
           <p className="text-sm text-slate-muted">
-            Partrunner Infrastructure & AI Enablement • Technical Report • 6 Months of Building
+            Infrastructure & AI Enablement • Technical Report • 6 Months of Building
           </p>
           <p className="text-xs text-slate-muted/60 mt-2">
             Process, Decisions, Learnings
