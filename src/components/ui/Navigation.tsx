@@ -162,8 +162,8 @@ export function Navigation() {
       <div className="fixed top-0 left-0 right-0 z-50 h-1" style={{ background: "#141414" }}>
         <motion.div
           className="h-full"
-          style={{ background: "#FACC15" }}
           style={{
+            background: "#FACC15",
             width: `${((sections.findIndex(s => s.id === activeSection) + 1) / sections.length) * 100}%`,
           }}
           transition={{ duration: 0.3 }}
