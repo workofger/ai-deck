@@ -20,7 +20,7 @@ export default async function Image() {
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
-          background: "linear-gradient(135deg, #0F1729 0%, #1A2744 50%, #0F1729 100%)",
+          background: "#0A0A0A",
           position: "relative",
         }}
       >
@@ -33,14 +33,14 @@ export default async function Image() {
             right: 0,
             bottom: 0,
             backgroundImage: `
-              linear-gradient(rgba(37, 99, 235, 0.1) 1px, transparent 1px),
-              linear-gradient(90deg, rgba(37, 99, 235, 0.1) 1px, transparent 1px)
+              linear-gradient(rgba(250, 204, 21, 0.05) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(250, 204, 21, 0.05) 1px, transparent 1px)
             `,
             backgroundSize: "40px 40px",
           }}
         />
 
-        {/* Gradient orbs */}
+        {/* Yellow gradient orbs */}
         <div
           style={{
             position: "absolute",
@@ -48,7 +48,7 @@ export default async function Image() {
             left: "10%",
             width: "300px",
             height: "300px",
-            background: "rgba(37, 99, 235, 0.2)",
+            background: "rgba(250, 204, 21, 0.1)",
             borderRadius: "50%",
             filter: "blur(80px)",
           }}
@@ -60,7 +60,7 @@ export default async function Image() {
             right: "10%",
             width: "300px",
             height: "300px",
-            background: "rgba(249, 115, 22, 0.2)",
+            background: "rgba(250, 204, 21, 0.1)",
             borderRadius: "50%",
             filter: "blur(80px)",
           }}
@@ -77,23 +77,23 @@ export default async function Image() {
             padding: "40px",
           }}
         >
-          {/* Logo placeholder - using text since we can't load external images easily */}
+          {/* Logo placeholder */}
           <div
             style={{
               display: "flex",
               alignItems: "center",
               marginBottom: "30px",
               padding: "12px 24px",
-              background: "rgba(26, 39, 68, 0.8)",
+              background: "#141414",
               borderRadius: "50px",
-              border: "1px solid rgba(45, 63, 95, 0.8)",
+              border: "1px solid #262626",
             }}
           >
             <span
               style={{
                 fontSize: "24px",
                 fontWeight: 700,
-                color: "#FFFFFF",
+                color: "#FACC15",
                 letterSpacing: "0.1em",
               }}
             >
@@ -116,9 +116,7 @@ export default async function Image() {
             This isn&apos;t another{" "}
             <span
               style={{
-                background: "linear-gradient(135deg, #2563EB 0%, #F97316 100%)",
-                backgroundClip: "text",
-                color: "transparent",
+                color: "#FACC15",
               }}
             >
               AI demo
@@ -130,23 +128,23 @@ export default async function Image() {
           <p
             style={{
               fontSize: "28px",
-              color: "#94A3B8",
+              color: "#A3A3A3",
               textAlign: "center",
               margin: 0,
               marginBottom: "40px",
             }}
           >
             This is what it{" "}
-            <span style={{ color: "#F97316", fontWeight: 500 }}>actually</span>{" "}
+            <span style={{ color: "#FACC15", fontWeight: 500 }}>actually</span>{" "}
             takes.
           </p>
 
-          {/* Divider */}
+          {/* Divider - Yellow */}
           <div
             style={{
               width: "120px",
               height: "4px",
-              background: "linear-gradient(90deg, #2563EB, #F97316)",
+              background: "#FACC15",
               borderRadius: "2px",
               marginBottom: "30px",
             }}
@@ -156,7 +154,7 @@ export default async function Image() {
           <p
             style={{
               fontSize: "18px",
-              color: "#64748B",
+              color: "#737373",
               textAlign: "center",
             }}
           >
@@ -170,4 +168,3 @@ export default async function Image() {
     }
   );
 }
-

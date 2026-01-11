@@ -84,9 +84,10 @@ export function Navigation() {
               className={cn(
                 "w-2 h-2 rounded-full transition-all",
                 activeSection === section.id
-                  ? "bg-pr-orange scale-150"
-                  : "bg-slate-mid group-hover:bg-pr-blue"
+                  ? "scale-150"
+                  : "bg-slate-mid group-hover:bg-yellow-400"
               )}
+              style={activeSection === section.id ? { background: "#FACC15" } : undefined}
             />
           </button>
         ))}
@@ -157,11 +158,11 @@ export function Navigation() {
         )}
       </AnimatePresence>
 
-      {/* Progress Bar - Partrunner Brand */}
-      <div className="fixed top-0 left-0 right-0 z-50 h-1 bg-slate-dark">
+      {/* Progress Bar - Partrunner Yellow */}
+      <div className="fixed top-0 left-0 right-0 z-50 h-1" style={{ background: "#141414" }}>
         <motion.div
           className="h-full"
-          style={{ background: "linear-gradient(90deg, #2563EB, #F97316, #2563EB)" }}
+          style={{ background: "#FACC15" }}
           style={{
             width: `${((sections.findIndex(s => s.id === activeSection) + 1) / sections.length) * 100}%`,
           }}
