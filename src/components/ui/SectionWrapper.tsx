@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
-import { ReactNode } from "react";
+import { ReactNode, useEffect, useState } from "react";
 
 interface SectionWrapperProps {
   id: string;
@@ -26,23 +26,37 @@ export function SectionWrapper({
   fullHeight = true,
   background = "default",
 }: SectionWrapperProps) {
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    setPrefersReducedMotion(mediaQuery.matches);
+    
+    const handleChange = (e: MediaQueryListEvent) => {
+      setPrefersReducedMotion(e.matches);
+    };
+    mediaQuery.addEventListener("change", handleChange);
+    return () => mediaQuery.removeEventListener("change", handleChange);
+  }, []);
+
   return (
     <section
       id={id}
       className={cn(
-        "relative px-4 md:px-8 lg:px-16",
-        fullHeight && "min-h-screen",
+        "relative px-4 sm:px-6 md:px-8 lg:px-16",
+        fullHeight && "min-h-screen min-h-[100dvh]",
         "flex flex-col justify-center",
-        "py-16 md:py-24",
+        "py-12 sm:py-16 md:py-24",
         backgrounds[background],
         className
       )}
+      aria-labelledby={`${id}-heading`}
     >
       <motion.div
-        initial={{ opacity: 0 }}
+        initial={{ opacity: prefersReducedMotion ? 1 : 0 }}
         whileInView={{ opacity: 1 }}
-        viewport={{ once: true, margin: "-100px" }}
-        transition={{ duration: 0.6 }}
+        viewport={{ once: true, margin: "-50px" }}
+        transition={{ duration: prefersReducedMotion ? 0 : 0.6 }}
         className="max-w-7xl mx-auto w-full"
       >
         {children}
@@ -59,22 +73,45 @@ interface SectionHeaderProps {
 }
 
 export function SectionHeader({ label, title, description, className }: SectionHeaderProps) {
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    setPrefersReducedMotion(mediaQuery.matches);
+    
+    const handleChange = (e: MediaQueryListEvent) => {
+      setPrefersReducedMotion(e.matches);
+    };
+    mediaQuery.addEventListener("change", handleChange);
+    return () => mediaQuery.removeEventListener("change", handleChange);
+  }, []);
+
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
+    <motion.header
+      initial={{ opacity: prefersReducedMotion ? 1 : 0, y: prefersReducedMotion ? 0 : 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.5 }}
-      className={cn("mb-12 md:mb-16", className)}
+      transition={{ duration: prefersReducedMotion ? 0 : 0.5 }}
+      className={cn("mb-8 sm:mb-12 md:mb-16", className)}
     >
       {label && (
-        <span className="label mb-2 block" style={{ color: "#FACC15" }}>{label}</span>
+        <span 
+          className="text-xs sm:text-sm font-semibold uppercase tracking-wider mb-2 block" 
+          style={{ color: "#FACC15" }}
+        >
+          {label}
+        </span>
       )}
-      <h2 className="heading-section text-white mb-4">{title}</h2>
+      <h2 
+        className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-3 md:mb-4 leading-tight"
+      >
+        {title}
+      </h2>
       {description && (
-        <p className="body-large max-w-3xl">{description}</p>
+        <p className="text-base sm:text-lg md:text-xl text-slate-light max-w-3xl leading-relaxed">
+          {description}
+        </p>
       )}
-    </motion.div>
+    </motion.header>
   );
 }
-
