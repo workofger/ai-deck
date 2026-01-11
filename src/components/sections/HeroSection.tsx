@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, Truck } from "lucide-react";
 
 // Fixed positions for particles to avoid hydration mismatch
 const particlePositions = [
@@ -48,9 +48,10 @@ export function HeroSection() {
         {/* Grid Pattern */}
         <div className="absolute inset-0 bg-grid-pattern opacity-30" />
         
-        {/* Animated Gradient Orbs */}
+        {/* Partrunner Brand Gradient Orbs */}
         <motion.div
-          className="absolute top-1/4 -left-32 w-96 h-96 bg-blue/20 rounded-full blur-3xl"
+          className="absolute top-1/4 -left-32 w-96 h-96 rounded-full blur-3xl"
+          style={{ background: "rgba(37, 99, 235, 0.15)" }}
           animate={{
             x: [0, 50, 0],
             y: [0, 30, 0],
@@ -62,7 +63,8 @@ export function HeroSection() {
           }}
         />
         <motion.div
-          className="absolute bottom-1/4 -right-32 w-96 h-96 bg-violet/20 rounded-full blur-3xl"
+          className="absolute bottom-1/4 -right-32 w-96 h-96 rounded-full blur-3xl"
+          style={{ background: "rgba(249, 115, 22, 0.15)" }}
           animate={{
             x: [0, -50, 0],
             y: [0, -30, 0],
@@ -90,10 +92,11 @@ export function HeroSection() {
                 return (
                   <motion.div
                     key={i}
-                    className="absolute w-2 h-2 bg-rose/50 rounded-full"
+                    className="absolute w-2 h-2 rounded-full"
                     style={{
                       left: `${pos.left}%`,
                       top: `${pos.top}%`,
+                      background: i % 2 === 0 ? "rgba(249, 115, 22, 0.5)" : "rgba(244, 63, 94, 0.5)",
                     }}
                     animate={{
                       x: anim.x,
@@ -110,15 +113,16 @@ export function HeroSection() {
               })}
               {/* Glitchy text */}
               <motion.div
-                className="absolute top-1/3 left-8 text-4xl font-mono text-rose/30 animate-glitch"
+                className="absolute top-1/3 left-8 text-4xl font-mono animate-glitch"
+                style={{ color: "rgba(249, 115, 22, 0.3)" }}
                 animate={{ opacity: [0.1, 0.3, 0.1] }}
                 transition={{ duration: 0.5, repeat: Infinity }}
               >
                 {"AI_MAGIC()"}
               </motion.div>
               <motion.div
-                className="absolute top-1/2 left-16 text-2xl font-mono text-violet/30 animate-glitch"
-                style={{ animationDelay: "0.1s" }}
+                className="absolute top-1/2 left-16 text-2xl font-mono animate-glitch"
+                style={{ color: "rgba(139, 92, 246, 0.3)", animationDelay: "0.1s" }}
                 animate={{ opacity: [0.1, 0.4, 0.1] }}
                 transition={{ duration: 0.3, repeat: Infinity }}
               >
@@ -135,31 +139,34 @@ export function HeroSection() {
           animate={{ width: mounted && showTransition ? "100%" : "50%" }}
           transition={{ duration: 1.5, ease: "easeInOut" }}
         >
-          {/* Structured grid lines */}
+          {/* Structured grid lines - Partrunner Blue */}
           <svg className="absolute inset-0 w-full h-full opacity-20">
             <defs>
               <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse">
-                <path d="M 60 0 L 0 0 0 60" fill="none" stroke="currentColor" strokeWidth="0.5" className="text-blue" />
+                <path d="M 60 0 L 0 0 0 60" fill="none" stroke="#2563EB" strokeWidth="0.5" />
               </pattern>
             </defs>
             <rect width="100%" height="100%" fill="url(#grid)" />
           </svg>
           
-          {/* Data flow lines */}
+          {/* Data flow lines - Brand colors */}
           <motion.div
-            className="absolute top-1/4 left-0 right-0 h-px bg-gradient-to-r from-transparent via-cyan/50 to-transparent"
+            className="absolute top-1/4 left-0 right-0 h-px"
+            style={{ background: "linear-gradient(to right, transparent, rgba(37, 99, 235, 0.5), transparent)" }}
             initial={{ scaleX: 0 }}
             animate={{ scaleX: mounted && showTransition ? 1 : 0.5 }}
             transition={{ duration: 1, delay: 0.5 }}
           />
           <motion.div
-            className="absolute top-1/2 left-0 right-0 h-px bg-gradient-to-r from-transparent via-emerald/50 to-transparent"
+            className="absolute top-1/2 left-0 right-0 h-px"
+            style={{ background: "linear-gradient(to right, transparent, rgba(249, 115, 22, 0.5), transparent)" }}
             initial={{ scaleX: 0 }}
             animate={{ scaleX: mounted && showTransition ? 1 : 0.5 }}
             transition={{ duration: 1, delay: 0.7 }}
           />
           <motion.div
-            className="absolute top-3/4 left-0 right-0 h-px bg-gradient-to-r from-transparent via-violet/50 to-transparent"
+            className="absolute top-3/4 left-0 right-0 h-px"
+            style={{ background: "linear-gradient(to right, transparent, rgba(37, 99, 235, 0.5), transparent)" }}
             initial={{ scaleX: 0 }}
             animate={{ scaleX: mounted && showTransition ? 1 : 0.5 }}
             transition={{ duration: 1, delay: 0.9 }}
@@ -169,6 +176,19 @@ export function HeroSection() {
 
       {/* Content */}
       <div className="relative z-10 text-center px-4">
+        {/* Partrunner Logo Mark */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.5 }}
+          className="mb-8 flex justify-center"
+        >
+          <div className="flex items-center gap-3 px-4 py-2 rounded-full bg-slate-dark/50 border border-slate-mid">
+            <Truck className="w-5 h-5 text-pr-orange" />
+            <span className="text-sm font-semibold text-white tracking-wide">PARTRUNNER</span>
+          </div>
+        </motion.div>
+
         {/* Main Title with Typewriter Effect */}
         <motion.div
           initial={{ opacity: 0 }}
@@ -210,7 +230,7 @@ export function HeroSection() {
                 className="text-2xl md:text-3xl text-slate-light font-light"
               >
                 This is what it{" "}
-                <span className="text-white font-medium">actually</span> takes.
+                <span className="text-pr-orange font-medium">actually</span> takes.
               </motion.p>
             )}
           </AnimatePresence>
@@ -226,7 +246,7 @@ export function HeroSection() {
               className="mt-12"
             >
               <p className="text-slate-muted text-lg mb-2">
-                Partrunner Infrastructure & AI Enablement
+                Infrastructure & AI Enablement
               </p>
               <p className="text-slate-light">
                 6 Months of Building • Process, Decisions, Learnings
@@ -239,6 +259,15 @@ export function HeroSection() {
                 <span>•</span>
                 <span>Technical Report</span>
               </div>
+
+              {/* Brand Divider */}
+              <motion.div
+                initial={{ scaleX: 0 }}
+                animate={{ scaleX: 1 }}
+                transition={{ duration: 1, delay: 1 }}
+                className="mt-8 mx-auto w-32 h-1 rounded-full overflow-hidden"
+                style={{ background: "linear-gradient(90deg, #2563EB, #F97316)" }}
+              />
             </motion.div>
           )}
         </AnimatePresence>
@@ -251,7 +280,7 @@ export function HeroSection() {
           className="absolute bottom-12 left-1/2 -translate-x-1/2"
         >
           <motion.div
-            className="flex flex-col items-center gap-2 text-slate-muted cursor-pointer"
+            className="flex flex-col items-center gap-2 text-slate-muted cursor-pointer hover:text-pr-blue transition-colors"
             onClick={() => document.getElementById("context")?.scrollIntoView({ behavior: "smooth" })}
             whileHover={{ y: 5 }}
           >
@@ -273,7 +302,8 @@ export function HeroSection() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-slate-mid to-transparent"
+            className="absolute left-1/2 top-0 bottom-0 w-px"
+            style={{ background: "linear-gradient(to bottom, transparent, rgba(37, 99, 235, 0.3), transparent)" }}
           />
         )}
       </AnimatePresence>

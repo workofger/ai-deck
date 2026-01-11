@@ -1,30 +1,35 @@
 @import "tailwindcss";
 
 /* ========================================
-   PARTRUNNER DECK - DESIGN SYSTEM
+   PARTRUNNER DECK - BRAND DESIGN SYSTEM
+   Aligned with Partrunner Visual Identity
    ======================================== */
 
 :root {
-  /* Primary Backgrounds */
-  --deep-navy: #0F172A;
-  --slate-dark: #1E293B;
-  --slate-mid: #334155;
+  /* Partrunner Brand Colors */
+  --pr-blue-dark: #1E3A5F;      /* Primary dark blue */
+  --pr-blue: #2563EB;            /* Primary blue */
+  --pr-blue-light: #3B82F6;      /* Light blue */
+  --pr-orange: #F97316;          /* Primary accent orange */
+  --pr-orange-light: #FB923C;    /* Light orange */
+  --pr-amber: #F59E0B;           /* Secondary accent */
   
-  /* Primary Foregrounds */
+  /* Backgrounds */
+  --deep-navy: #0F1729;          /* Darkest background */
+  --slate-dark: #1A2744;         /* Card backgrounds */
+  --slate-mid: #2D3F5F;          /* Borders */
+  
+  /* Foregrounds */
   --white: #FFFFFF;
   --slate-light: #94A3B8;
   --slate-muted: #64748B;
   
-  /* Accent Colors */
+  /* Extended Palette */
   --emerald: #10B981;
-  --amber: #F59E0B;
-  --blue: #3B82F6;
   --violet: #8B5CF6;
   --rose: #F43F5E;
   --cyan: #06B6D4;
   --teal: #0D9488;
-  --slack-purple: #4A154B;
-  --whatsapp-green: #25D366;
   
   /* Semantic */
   --background: var(--deep-navy);
@@ -35,10 +40,15 @@
   --text-secondary: var(--slate-light);
   --text-muted: var(--slate-muted);
   
+  /* Brand shortcuts */
+  --brand-primary: var(--pr-blue);
+  --brand-accent: var(--pr-orange);
+  
   /* Gradients */
-  --hero-gradient: linear-gradient(135deg, #0F172A 0%, #1E293B 50%, #0F172A 100%);
-  --glow-blue: radial-gradient(circle at center, rgba(59, 130, 246, 0.15) 0%, transparent 70%);
-  --glow-violet: radial-gradient(circle at center, rgba(139, 92, 246, 0.15) 0%, transparent 70%);
+  --hero-gradient: linear-gradient(135deg, #0F1729 0%, #1A2744 50%, #0F1729 100%);
+  --brand-gradient: linear-gradient(135deg, var(--pr-blue) 0%, var(--pr-orange) 100%);
+  --glow-blue: radial-gradient(circle at center, rgba(37, 99, 235, 0.2) 0%, transparent 70%);
+  --glow-orange: radial-gradient(circle at center, rgba(249, 115, 22, 0.2) 0%, transparent 70%);
   
   /* Spacing */
   --space-xs: 4px;
@@ -51,7 +61,7 @@
   --space-4xl: 96px;
   
   /* Typography */
-  --font-display: 'Cabinet Grotesk', 'Inter', system-ui, sans-serif;
+  --font-display: 'Inter', system-ui, sans-serif;
   --font-body: 'Inter', system-ui, sans-serif;
   --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
   
@@ -73,13 +83,22 @@
   --color-slate-light: var(--slate-light);
   --color-slate-muted: var(--slate-muted);
   
+  /* Partrunner brand */
+  --color-pr-blue: var(--pr-blue);
+  --color-pr-blue-dark: var(--pr-blue-dark);
+  --color-pr-blue-light: var(--pr-blue-light);
+  --color-pr-orange: var(--pr-orange);
+  --color-pr-orange-light: var(--pr-orange-light);
+  
+  /* Extended colors */
   --color-emerald: var(--emerald);
-  --color-amber: var(--amber);
-  --color-blue: var(--blue);
+  --color-amber: var(--pr-amber);
+  --color-blue: var(--pr-blue);
   --color-violet: var(--violet);
   --color-rose: var(--rose);
   --color-cyan: var(--cyan);
   --color-teal: var(--teal);
+  --color-orange: var(--pr-orange);
   
   --font-display: var(--font-display);
   --font-body: var(--font-body);
@@ -105,7 +124,7 @@ body {
   overflow-x: hidden;
 }
 
-/* Custom Scrollbar */
+/* Custom Scrollbar - Partrunner Brand */
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
@@ -116,17 +135,17 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--slate-mid);
+  background: var(--pr-blue-dark);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--slate-light);
+  background: var(--pr-blue);
 }
 
-/* Selection */
+/* Selection - Brand Orange */
 ::selection {
-  background: rgba(59, 130, 246, 0.3);
+  background: rgba(249, 115, 22, 0.3);
   color: var(--white);
 }
 
@@ -177,16 +196,6 @@ body {
   100% { transform: translateX(100%); opacity: 0; }
 }
 
-@keyframes typewriter {
-  from { width: 0; }
-  to { width: 100%; }
-}
-
-@keyframes blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
-}
-
 @keyframes scrollIndicator {
   0%, 100% { transform: translateY(0); opacity: 1; }
   50% { transform: translateY(8px); opacity: 0.5; }
@@ -223,15 +232,23 @@ body {
   animation: scrollIndicator 2s ease-in-out infinite;
 }
 
+/* Partrunner Brand Gradient Text */
 .text-gradient {
-  background: linear-gradient(135deg, var(--blue) 0%, var(--violet) 50%, var(--cyan) 100%);
+  background: linear-gradient(135deg, var(--pr-blue) 0%, var(--pr-orange) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
-.text-gradient-emerald {
-  background: linear-gradient(135deg, var(--emerald) 0%, var(--cyan) 100%);
+.text-gradient-blue {
+  background: linear-gradient(135deg, var(--pr-blue-light) 0%, var(--pr-blue) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-orange {
+  background: linear-gradient(135deg, var(--pr-orange) 0%, var(--pr-amber) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -239,29 +256,30 @@ body {
 
 .bg-grid-pattern {
   background-image: 
-    linear-gradient(rgba(51, 65, 85, 0.3) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(51, 65, 85, 0.3) 1px, transparent 1px);
+    linear-gradient(rgba(37, 99, 235, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(37, 99, 235, 0.1) 1px, transparent 1px);
   background-size: 40px 40px;
 }
 
 .bg-dot-pattern {
-  background-image: radial-gradient(rgba(51, 65, 85, 0.5) 1px, transparent 1px);
+  background-image: radial-gradient(rgba(37, 99, 235, 0.3) 1px, transparent 1px);
   background-size: 20px 20px;
 }
 
+/* Partrunner Brand Glows */
 .glow-blue {
-  box-shadow: 0 0 40px rgba(59, 130, 246, 0.3);
+  box-shadow: 0 0 40px rgba(37, 99, 235, 0.3);
 }
 
-.glow-violet {
-  box-shadow: 0 0 40px rgba(139, 92, 246, 0.3);
+.glow-orange {
+  box-shadow: 0 0 40px rgba(249, 115, 22, 0.3);
 }
 
-.glow-emerald {
-  box-shadow: 0 0 40px rgba(16, 185, 129, 0.3);
+.glow-brand {
+  box-shadow: 0 0 60px rgba(37, 99, 235, 0.2), 0 0 40px rgba(249, 115, 22, 0.1);
 }
 
-/* Card Styles */
+/* Card Styles - Partrunner Brand */
 .card {
   background: var(--card-bg);
   border: 1px solid var(--card-border);
@@ -271,30 +289,52 @@ body {
 }
 
 .card:hover {
-  border-color: var(--blue);
+  border-color: var(--pr-blue);
   transform: translateY(-2px);
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 24px rgba(37, 99, 235, 0.15);
 }
 
-/* Button Styles */
+/* Button Styles - Partrunner Brand */
 .btn-primary {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: var(--space-sm);
   padding: 12px 24px;
-  background: var(--blue);
+  background: linear-gradient(135deg, var(--pr-blue) 0%, var(--pr-blue-light) 100%);
   color: var(--white);
   border: none;
   border-radius: 8px;
-  font-weight: 500;
+  font-weight: 600;
   cursor: pointer;
   transition: all var(--transition-base);
 }
 
 .btn-primary:hover {
-  background: #2563EB;
+  background: linear-gradient(135deg, var(--pr-blue-light) 0%, var(--pr-blue) 100%);
   transform: translateY(-1px);
+  box-shadow: 0 4px 20px rgba(37, 99, 235, 0.3);
+}
+
+.btn-accent {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  padding: 12px 24px;
+  background: linear-gradient(135deg, var(--pr-orange) 0%, var(--pr-orange-light) 100%);
+  color: var(--white);
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-base);
+}
+
+.btn-accent:hover {
+  background: linear-gradient(135deg, var(--pr-orange-light) 0%, var(--pr-orange) 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 20px rgba(249, 115, 22, 0.3);
 }
 
 .btn-secondary {
@@ -313,8 +353,8 @@ body {
 }
 
 .btn-secondary:hover {
-  border-color: var(--blue);
-  background: rgba(59, 130, 246, 0.1);
+  border-color: var(--pr-blue);
+  background: rgba(37, 99, 235, 0.1);
 }
 
 /* Section Styles */
@@ -346,6 +386,11 @@ body {
   height: 4px;
 }
 
+.horizontal-scroll::-webkit-scrollbar-thumb {
+  background: var(--pr-blue);
+  border-radius: 4px;
+}
+
 .horizontal-scroll > * {
   flex-shrink: 0;
   scroll-snap-align: start;
@@ -364,9 +409,9 @@ body {
   }
 }
 
-/* Focus Styles */
+/* Focus Styles - Partrunner Brand */
 *:focus-visible {
-  outline: 2px solid var(--blue);
+  outline: 2px solid var(--pr-orange);
   outline-offset: 2px;
 }
 
@@ -408,13 +453,39 @@ body {
 
 .label {
   font-size: 0.875rem;
-  font-weight: 500;
+  font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  color: var(--slate-muted);
+  color: var(--pr-orange);
 }
 
 .mono {
   font-family: var(--font-mono);
   font-size: 0.875rem;
+}
+
+/* Partrunner Logo Mark Effect */
+.pr-mark {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.pr-mark::before {
+  content: "";
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  background: linear-gradient(135deg, var(--pr-blue) 50%, var(--pr-orange) 50%);
+  border-radius: 2px;
+  transform: rotate(45deg);
+}
+
+/* Brand Divider */
+.brand-divider {
+  height: 4px;
+  background: linear-gradient(90deg, var(--pr-blue), var(--pr-orange), var(--pr-blue));
+  background-size: 200% 100%;
+  animation: gradientMove 3s ease infinite;
+  border-radius: 2px;
 }

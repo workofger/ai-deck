@@ -84,8 +84,8 @@ export function Navigation() {
               className={cn(
                 "w-2 h-2 rounded-full transition-all",
                 activeSection === section.id
-                  ? "bg-blue scale-150"
-                  : "bg-slate-mid group-hover:bg-slate-light"
+                  ? "bg-pr-orange scale-150"
+                  : "bg-slate-mid group-hover:bg-pr-blue"
               )}
             />
           </button>
@@ -157,10 +157,11 @@ export function Navigation() {
         )}
       </AnimatePresence>
 
-      {/* Progress Bar */}
+      {/* Progress Bar - Partrunner Brand */}
       <div className="fixed top-0 left-0 right-0 z-50 h-1 bg-slate-dark">
         <motion.div
-          className="h-full bg-gradient-to-r from-blue via-violet to-cyan"
+          className="h-full"
+          style={{ background: "linear-gradient(90deg, #2563EB, #F97316, #2563EB)" }}
           style={{
             width: `${((sections.findIndex(s => s.id === activeSection) + 1) / sections.length) * 100}%`,
           }}

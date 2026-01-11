@@ -68,7 +68,7 @@ export function SectionHeader({ label, title, description, className }: SectionH
       className={cn("mb-12 md:mb-16", className)}
     >
       {label && (
-        <span className="label text-blue mb-2 block">{label}</span>
+        <span className="label text-pr-orange mb-2 block">{label}</span>
       )}
       <h2 className="heading-section text-white mb-4">{title}</h2>
       {description && (
